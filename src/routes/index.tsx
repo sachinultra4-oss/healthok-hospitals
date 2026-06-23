@@ -56,9 +56,10 @@ function Header() {
   const links = [
     { label: "Home", href: "#home" },
     { label: "Centres", href: "#centres" },
-    { label: "Doctors", href: "#doctors" },
+    { label: "Doctors", href: "/doctors" },
     { label: "Contact", href: "#contact" },
   ];
+
   return (
     <header className="sticky top-0 z-40 bg-background/85 backdrop-blur border-b border-border">
       <div className="container-px mx-auto max-w-7xl flex items-center justify-between h-16">
@@ -490,10 +491,11 @@ function FeaturedDoctors() {
           ))}
         </div>
         <div className="mt-8 text-center">
-          <a href={WHATSAPP} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-5 py-3 font-semibold shadow-card">
+          <a href="/doctors" className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-5 py-3 font-semibold shadow-card">
             View All Doctors <ArrowRight className="w-4 h-4" />
           </a>
         </div>
+
       </div>
     </section>
   );

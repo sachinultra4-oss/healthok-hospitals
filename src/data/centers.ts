@@ -166,4 +166,19 @@ const nashikDoctors: Doctor[] = [
   { name: "Dr. Dnyaneshwar Borade", qualification: "BAMS", address: "Om Clinic, Jail Road, Nashik Road, Nashik", mobile: COMMON_NUMBER, active: true, city: "Nashik", district: "Nashik" },
   { name: "Dr. Shekhar Thanage", qualification: "BAMS", registration: "I-32641A-1", address: "OM Clinic, 9, Guruvandana, Near Octrol Naka No 6, Lam Road, Deolali Camp, Nashik", mobile: COMMON_NUMBER, active: true, city: "Nashik", district: "Nashik" },
   { name: "Dr. Kishor Thorat", qualification: "BAMS", address: "Manjuprabha Nursing Home, Hanesh Nagar, Amrutdham, Panchvati, Nashik", mobile: COMMON_NUMBER, active: true, city: "Nashik", district: "Nashik" },
-  { name: "Dr. Vandana Aher", qualification: "BAMS", 
+  { name: "Dr. Vandana Aher", qualification: "BAMS", address: "Nashik", mobile: COMMON_NUMBER, active: true, city: "Nashik", district: "Nashik" }
+];
+
+export const getAllDoctors = (): Doctor[] => [
+  ...sakriDoctors,
+  ...nampurDoctors,
+  ...shirpurDoctors,
+  ...dondaichaDoctors,
+  ...parolaDoctors,
+  ...chalisgaonDoctors,
+  ...amalnerDoctors,
+  ...malegaonDoctors,
+  ...jalgaonDoctors,
+  ...nashikDoctors,
+];
+
