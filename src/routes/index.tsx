@@ -56,9 +56,10 @@ function Header() {
   const links = [
     { label: "Home", href: "#home" },
     { label: "Centres", href: "#centres" },
-    { label: "Doctors", href: "#doctors" },
+    { label: "Doctors", href: "/doctors" },
     { label: "Contact", href: "#contact" },
   ];
+
   return (
     <header className="sticky top-0 z-40 bg-background/85 backdrop-blur border-b border-border">
       <div className="container-px mx-auto max-w-7xl flex items-center justify-between h-16">
