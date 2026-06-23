@@ -491,10 +491,11 @@ function FeaturedDoctors() {
           ))}
         </div>
         <div className="mt-8 text-center">
-          <a href={WHATSAPP} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-5 py-3 font-semibold shadow-card">
+          <a href="/doctors" className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-5 py-3 font-semibold shadow-card">
             View All Doctors <ArrowRight className="w-4 h-4" />
           </a>
         </div>
+
       </div>
     </section>
   );
