@@ -172,6 +172,6 @@ export const DoctorsPage = () => {
           </div>
         )}
       </div>
-    </section>
+    </div>
   );
 };
