@@ -107,11 +107,9 @@ function Header() {
 /* ---------------- Hero ---------------- */
 function Hero() {
   return (
-    <section id="home" className="relative overflow-hidden">
-      <div className="absolute inset-0 -z-10 gradient-hero opacity-95" />
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.15),transparent_60%)]" />
-      <div className="container-px mx-auto max-w-7xl py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center">
-        <div className="text-primary-foreground">
+    <section id="home" className="relative overflow-hidden gradient-hero text-primary-foreground">
+      <div className="container-px mx-auto max-w-7xl py-16 md:py-24 grid md:grid-cols-2 gap-12 items-center relative z-10">
+        <div>
           <span className="inline-flex items-center gap-2 rounded-full bg-white/15 backdrop-blur px-3 py-1.5 text-xs font-semibold ring-1 ring-white/20">
             <ShieldCheck className="w-3.5 h-3.5" /> Maharashtra's Trusted Healthcare Network
           </span>
@@ -119,7 +117,7 @@ function Hero() {
             Standard, Ethical & Efficient Healthcare, <span className="text-secondary">Close to You.</span>
           </h1>
           <p className="mt-5 text-base md:text-lg text-white/85 max-w-xl">
-            Delivering transparent, specialized medical expertise to rural and semi-urban communities — backed by 9+ centres, zero hidden fees, and 24/7 consultant backup.
+            Delivering transparent, specialized medical expertise to rural and semi-urban communities — backed by 12+ centres, zero hidden fees, and 24/7 consultant backup.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <a href={WHATSAPP} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-secondary text-secondary-foreground px-5 py-3 font-semibold hover:opacity-90 transition shadow-card">
@@ -131,7 +129,7 @@ function Hero() {
           </div>
           <dl className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-xl">
             {[
-              ["9+", "Centres"],
+              ["12+", "Centres"],
               ["0", "Hidden Charges"],
               ["20+", "Cities & Towns"],
               ["24/7", "Consultant Backup"],
@@ -144,7 +142,6 @@ function Hero() {
           </dl>
         </div>
         <div className="relative">
-          <div className="absolute -inset-4 rounded-3xl bg-secondary/30 blur-2xl" />
           <div className="relative rounded-3xl overflow-hidden shadow-card ring-4 ring-white/30">
             <img src={banner.url} alt="Health OK doctor consulting a patient" className="w-full h-full object-cover aspect-[4/5] md:aspect-[4/4]" />
           </div>
