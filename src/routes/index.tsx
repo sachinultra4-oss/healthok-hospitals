@@ -309,7 +309,7 @@ function DoctorBenefits() {
 /* ---------------- Impact ---------------- */
 function Impact() {
   const stats = [
-    { n: "9+", l: "Centres" },
+    { n: "12+", l: "Centres" },
     { n: "20+", l: "Cities & Towns Covered" },
     { n: "7,500+", l: "Patients Impacted Daily" },
     { n: "78+", l: "Verified Doctors" },
