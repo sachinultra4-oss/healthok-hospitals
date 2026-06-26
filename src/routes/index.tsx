@@ -10,6 +10,7 @@ import banner from "@/assets/banner.jpg.asset.json";
 import doctor1 from "@/assets/doctor1.mp4.asset.json";
 import doctor2 from "@/assets/doctor2.mp4.asset.json";
 import doctor3 from "@/assets/doctor3.mp4.asset.json";
+import { getAllDoctors } from "@/data/centers";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -451,17 +452,7 @@ function Testimonials() {
 
 /* ---------------- Featured doctors ---------------- */
 function FeaturedDoctors() {
-  const docs = [
-    { n: "डॉ. हेमंत कदम", q: "B.A.M.S.", c: "Amalner, Jalgaon" },
-    { n: "डॉ. प्रांजल कदम", q: "BHMS / CCMP", c: "Amalner, Jalgaon" },
-    { n: "डॉ. चंद्रशेखर पाटील", q: "B.A.M.S., C.C.H., C.G.O.", c: "Amalner, Jalgaon" },
-    { n: "डॉ. पूजा वाघुले-पंजवानी", q: "B.A.M.S.", c: "Amalner, Jalgaon" },
-    { n: "डॉ. कुणाल बच्छाव", q: "MS", c: "Dondaicha, Dhule" },
-    { n: "डॉ. कुणाल धोरात", q: "BHMS, CCMP", c: "Dondaicha, Dhule" },
-    { n: "डॉ. मिनाक्षी पाटील", q: "BAMS", c: "Jalgaon, Jalgaon" },
-    { n: "डॉ. दिगंबर दि. उगाळे", q: "B.A.M.S.", c: "Jalgaon, Jalgaon" },
-    { n: "डॉ. संदीप चौधरी", q: "BHMS", c: "Jalgaon, Jalgaon" },
-  ];
+  const docs = getAllDoctors().filter(d => d.image && d.active).slice(0, 9);
   return (
     <section id="doctors" className="py-20 md:py-28">
       <div className="container-px mx-auto max-w-7xl">
@@ -472,16 +463,20 @@ function FeaturedDoctors() {
         </div>
         <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {docs.map(d => (
-            <div key={d.n} className="rounded-2xl bg-card p-6 border border-border shadow-soft flex items-center gap-4 hover:shadow-card transition">
-              <div className="shrink-0 w-14 h-14 rounded-full bg-secondary text-secondary-foreground flex items-center justify-center">
-                <Stethoscope className="w-6 h-6" />
-              </div>
+            <div key={d.name} className="rounded-2xl bg-card p-6 border border-border shadow-soft flex items-center gap-4 hover:shadow-card transition">
+              <img
+                src={d.image}
+                alt={d.name}
+                loading="lazy"
+                onError={(e) => { (e.currentTarget as HTMLImageElement).style.visibility = "hidden"; }}
+                className="shrink-0 w-16 h-16 rounded-full object-cover border border-border"
+              />
               <div className="flex-1 min-w-0">
-                <p className="font-bold truncate">{d.n}</p>
-                <p className="text-xs text-primary font-semibold">{d.q}</p>
-                <p className="mt-0.5 text-xs text-muted-foreground flex items-center gap-1"><MapPin className="w-3 h-3" /> {d.c}</p>
+                <p className="font-bold truncate">{d.name}</p>
+                {d.qualification && <p className="text-xs text-primary font-semibold truncate">{d.qualification}</p>}
+                <p className="mt-0.5 text-xs text-muted-foreground flex items-center gap-1"><MapPin className="w-3 h-3" /> {d.city}, {d.district}</p>
               </div>
-              <a href={WHATSAPP} target="_blank" rel="noreferrer" aria-label={`Book ${d.n}`} className="shrink-0 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
+              <a href={WHATSAPP} target="_blank" rel="noreferrer" aria-label={`Book ${d.name}`} className="shrink-0 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
                 <MessageCircle className="w-4 h-4" />
               </a>
             </div>
@@ -497,6 +492,7 @@ function FeaturedDoctors() {
     </section>
   );
 }
+
 
 /* ---------------- Explore CTA ---------------- */
 function ExploreCTA() {
@@ -719,6 +715,7 @@ function Footer() {
             <li><a href="#doctors" className="hover:text-secondary">Our Doctors</a></li>
             <li><a href={WHATSAPP} className="hover:text-secondary">Join as Doctor</a></li>
             <li><a href="#contact" className="hover:text-secondary">Contact</a></li>
+            <li><a href="/admin" className="hover:text-secondary">Admin Dashboard</a></li>
           </ul>
         </div>
         <div>
