@@ -468,6 +468,9 @@ function FeaturedDoctors() {
                 src={d.image}
                 alt={d.name}
                 loading="lazy"
+                decoding="async"
+                width={64}
+                height={64}
                 onError={(e) => { (e.currentTarget as HTMLImageElement).style.visibility = "hidden"; }}
                 className="shrink-0 w-16 h-16 rounded-full object-cover border border-border"
               />
