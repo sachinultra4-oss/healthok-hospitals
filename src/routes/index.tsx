@@ -715,6 +715,7 @@ function Footer() {
             <li><a href="#doctors" className="hover:text-secondary">Our Doctors</a></li>
             <li><a href={WHATSAPP} className="hover:text-secondary">Join as Doctor</a></li>
             <li><a href="#contact" className="hover:text-secondary">Contact</a></li>
+            <li><a href="/admin" className="hover:text-secondary">Admin Dashboard</a></li>
           </ul>
         </div>
         <div>
