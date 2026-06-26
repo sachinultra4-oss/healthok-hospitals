@@ -195,6 +195,9 @@ function DoctorsPage() {
                       src={doc.image}
                       alt={doc.name}
                       loading="lazy"
+                      decoding="async"
+                      width={64}
+                      height={64}
                       onError={(e) => {
                         (e.currentTarget as HTMLImageElement).style.display = "none";
                       }}
