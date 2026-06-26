@@ -10,6 +10,7 @@ import banner from "@/assets/banner.jpg.asset.json";
 import doctor1 from "@/assets/doctor1.mp4.asset.json";
 import doctor2 from "@/assets/doctor2.mp4.asset.json";
 import doctor3 from "@/assets/doctor3.mp4.asset.json";
+import { getAllDoctors } from "@/data/centers";
 
 export const Route = createFileRoute("/")({
   head: () => ({
