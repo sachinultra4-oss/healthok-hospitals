@@ -11,6 +11,7 @@ import doctor1 from "@/assets/doctor1.mp4.asset.json";
 import doctor2 from "@/assets/doctor2.mp4.asset.json";
 import doctor3 from "@/assets/doctor3.mp4.asset.json";
 import { getAllDoctors } from "@/data/centers";
+import { DoctorAvatar } from "@/components/DoctorAvatar";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -464,16 +465,7 @@ function FeaturedDoctors() {
         <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {docs.map(d => (
             <div key={d.name} className="rounded-2xl bg-card p-6 border border-border shadow-soft flex items-center gap-4 hover:shadow-card transition">
-              <img
-                src={d.image}
-                alt={d.name}
-                loading="lazy"
-                decoding="async"
-                width={64}
-                height={64}
-                onError={(e) => { (e.currentTarget as HTMLImageElement).style.visibility = "hidden"; }}
-                className="shrink-0 w-16 h-16 rounded-full object-cover border border-border"
-              />
+              <DoctorAvatar name={d.name} image={d.image} size={64} />
               <div className="flex-1 min-w-0">
                 <p className="font-bold truncate">{d.name}</p>
                 {d.qualification && <p className="text-xs text-primary font-semibold truncate">{d.qualification}</p>}

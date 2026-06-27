@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { getAllDoctors, type Doctor } from "@/data/centers";
 import logo from "@/assets/logo.png.asset.json";
+import { DoctorAvatar } from "@/components/DoctorAvatar";
 
 const WHATSAPP = "https://wa.me/917588517991";
 const COMMON = "+917588517991";
@@ -190,24 +191,7 @@ function DoctorsPage() {
                 className="rounded-2xl border border-border bg-card p-5 flex flex-col shadow-sm hover:shadow-md transition"
               >
                 <div className="flex items-start justify-between gap-2 mb-3">
-                  {doc.image ? (
-                    <img
-                      src={doc.image}
-                      alt={doc.name}
-                      loading="lazy"
-                      decoding="async"
-                      width={64}
-                      height={64}
-                      onError={(e) => {
-                        (e.currentTarget as HTMLImageElement).style.display = "none";
-                      }}
-                      className="w-16 h-16 rounded-full object-cover border border-border shrink-0"
-                    />
-                  ) : (
-                    <div className="w-16 h-16 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xl shrink-0">
-                      {doc.name.replace("Dr. ", "").charAt(0)}
-                    </div>
-                  )}
+                  <DoctorAvatar name={doc.name} image={doc.image} size={64} />
                   {doc.active ? (
                     <span className="inline-flex items-center gap-1 text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
                       <CheckCircle className="w-3 h-3" /> Active
