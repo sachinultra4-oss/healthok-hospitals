@@ -16,7 +16,7 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Health OK Hospitals — Trusted Maharashtra Health Initiative" },
-      { name: "description", content: "Standard, ethical & efficient healthcare across Maharashtra. 78+ doctors, zero hidden fees, super-specialist consultations." },
+      { name: "description", content: "Standard, ethical & efficient healthcare across Maharashtra. 100+ doctors, zero hidden fees, super-specialist consultations." },
     ],
   }),
   component: Index,
@@ -118,7 +118,7 @@ function Hero() {
             Standard, Ethical & Efficient Healthcare, <span className="text-secondary">Close to You.</span>
           </h1>
           <p className="mt-5 text-base md:text-lg text-white/85 max-w-xl">
-            Delivering transparent, specialized medical expertise to rural and semi-urban communities — backed by 12+ centres, zero hidden fees, and 24/7 consultant backup.
+            Delivering transparent, specialized medical expertise to rural and semi-urban communities — backed by 150+ centres, zero hidden fees, and 24/7 consultant backup.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <a href={WHATSAPP} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-secondary text-secondary-foreground px-5 py-3 font-semibold hover:opacity-90 transition shadow-card">
@@ -130,7 +130,7 @@ function Hero() {
           </div>
           <dl className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-xl">
             {[
-              ["12+", "Centres"],
+              ["150+", "Centres"],
               ["0", "Hidden Charges"],
               ["20+", "Cities & Towns"],
               ["24/7", "Consultant Backup"],
@@ -288,7 +288,7 @@ function DoctorBenefits() {
       <div className="container-px mx-auto max-w-7xl grid md:grid-cols-2 gap-12 items-center">
         <div>
           <p className="text-sm font-semibold text-primary uppercase tracking-wider">For Doctors</p>
-          <h2 className="mt-2 text-3xl md:text-4xl font-extrabold">Why 78+ Doctors Have Joined Health OK</h2>
+          <h2 className="mt-2 text-3xl md:text-4xl font-extrabold">Why 100 + Doctors Have Joined Health OK</h2>
           <p className="mt-4 text-muted-foreground">Build a stronger practice with mentorship, specialist backup, and trusted brand visibility — all at zero cost to you.</p>
           <a href={WHATSAPP} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-5 py-3 font-semibold shadow-card">
             <Stethoscope className="w-4 h-4" /> Join Our Doctor Network
@@ -310,10 +310,10 @@ function DoctorBenefits() {
 /* ---------------- Impact ---------------- */
 function Impact() {
   const stats = [
-    { n: "12+", l: "Centres" },
+    { n: "150+", l: "Centres" },
     { n: "20+", l: "Cities & Towns Covered" },
     { n: "7,500+", l: "Patients Impacted Daily" },
-    { n: "78+", l: "Verified Doctors" },
+    { n: "100+", l: "Verified Doctors" },
   ];
   return (
     <section className="py-16 md:py-20">
@@ -367,9 +367,9 @@ function HowItWorks() {
 /* ---------------- Doctor videos ---------------- */
 function DoctorVideos() {
   const vids = [
-    { src: doctor1.url, name: "डॉ. पुष्कर घाटे", sub: "MBBS · Thane" },
-    { src: doctor2.url, name: "डॉ. आबासाहेब जगताप", sub: "B.A.M.S · Malegaon" },
-    { src: doctor3.url, name: "डॉ. रवींद्र हिरे", sub: "MBBS · Malegaon" },
+    { src: doctor1.url, name: "Dr Pushkar Ghate, Chalisgaon", sub: "MBBS · Thane" },
+    { src: doctor2.url, name: "Dr kishor kapadnis,Nampur", sub: "B.A.M.S · Malegaon" },
+    { src: doctor3.url, name: "Dr aabasaheb Jagtap", sub: "MBBS · Malegaon" },
   ];
   return (
     <section className="py-20 md:py-28">
@@ -607,7 +607,7 @@ function Contact() {
               { i: Calendar, t: "Appointment Booking", v: "+91 7588 517 991", href: PHONE },
               { i: Phone, t: "Customer Care", v: "+91 7588 517 991", href: PHONE },
               { i: MessageCircle, t: "Online Consultation", v: "+91 7588 517 991", href: WHATSAPP },
-              { i: Mail, t: "Email", v: "care@healthokhospitals.com", href: "mailto:care@healthokhospitals.com" },
+              { i: Mail, t: "Email", v: "care@healthokhospitals.com\n\n", href: "mailto:care@healthokhospitals.com" },
               { i: Clock, t: "Office Hours", v: "Mon–Sat, 9:00 AM – 6:00 PM IST" },
             ].map(({ i: Icon, t, v, href }) => {
               const Inner = (
@@ -726,7 +726,7 @@ function Footer() {
           <ul className="mt-4 space-y-2 text-sm text-white/75">
             <li>Appointment <br /><a href={PHONE} className="text-white font-semibold">+91 7588 517 991</a></li>
             <li>Customer Care <br /><a href={PHONE} className="text-white font-semibold">+91 7588 517 991</a></li>
-            <li><a href="mailto:care@healthokhospitals.com" className="hover:text-secondary">care@healthokhospitals.com</a></li>
+            <li><a href="mailto:care@healthokhospitals.com" className="hover:text-secondary whitespace-pre-wrap">care@healthokhospitals.com\n\n</a></li>
           </ul>
         </div>
       </div>
