@@ -24,7 +24,7 @@ export const Route = createFileRoute("/doctors")({
       {
         name: "description",
         content:
-          "Browse 78+ verified BAMS, BHMS & MBBS doctors across Nashik, Jalgaon, Dhule and nearby towns. Search by name, city, qualification or clinic.",
+          "Browse 100+ verified BAMS, BHMS & MBBS doctors across Nashik, Jalgaon, Dhule and nearby towns. Search by name, city, qualification or clinic.",
       },
       { property: "og:title", content: "Our Doctor Network — Health OK Hospitals" },
       {
