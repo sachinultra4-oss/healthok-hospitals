@@ -169,6 +169,22 @@ const nashikDoctors: Doctor[] = [
   { name: "Dr. Vandana Aher", qualification: "BAMS", address: "Nashik", mobile: COMMON_NUMBER, active: true, city: "Nashik", district: "Nashik", image: "/Dr Vandana Aaher.jpg" }
 ];
 
+// ============================================================
+// NEWLY ADDED DOCTORS (Network)
+// ============================================================
+const networkDoctors: Doctor[] = [
+  { name: "Dr. Vijay Rai", qualification: "BAMS", address: "Health OK Network Clinic", mobile: COMMON_NUMBER, active: true, city: "Network", district: "Maharashtra", image: "/Dr Vijay Rai.jpg" },
+  { name: "Dr. Vaishali Vasude", qualification: "BAMS", address: "Health OK Network Clinic", mobile: COMMON_NUMBER, active: true, city: "Network", district: "Maharashtra", image: "/Dr Vaishali Vasude.jpg" },
+  { name: "Dr. Sunita Salunkhe", qualification: "BAMS", address: "Health OK Network Clinic", mobile: COMMON_NUMBER, active: true, city: "Network", district: "Maharashtra", image: "/Dr Sunita Salunkhe.jpg" },
+  { name: "Dr. Sunita Bhagat", qualification: "BAMS", address: "Health OK Network Clinic", mobile: COMMON_NUMBER, active: true, city: "Network", district: "Maharashtra", image: "/Dr Sunita Bhagat.jpg" },
+  { name: "Dr. Sukanya Joshi", qualification: "BAMS", address: "Health OK Network Clinic", mobile: COMMON_NUMBER, active: true, city: "Network", district: "Maharashtra", image: "/Dr Sukanya Joshi.jpg" },
+  { name: "Dr. Shailesh Chandane", qualification: "BAMS", address: "Health OK Network Clinic", mobile: COMMON_NUMBER, active: true, city: "Network", district: "Maharashtra", image: "/Dr Shailesh Chandane.jpg" },
+  { name: "Dr. Sandeep Harne", qualification: "BAMS", address: "Health OK Network Clinic", mobile: COMMON_NUMBER, active: true, city: "Network", district: "Maharashtra", image: "/Dr Sandeep Harne.jpg" },
+  { name: "Dr. Sachine Mhatre", qualification: "BAMS", address: "Health OK Network Clinic", mobile: COMMON_NUMBER, active: true, city: "Network", district: "Maharashtra", image: "/Dr Sachine Mhatre.jpg" },
+  { name: "Dr. Rupali Chandalne", qualification: "BAMS", address: "Health OK Network Clinic", mobile: COMMON_NUMBER, active: true, city: "Network", district: "Maharashtra", image: "/Dr Rupali Chandalne.jpg" },
+  { name: "Dr. Rashmi Manek", qualification: "BAMS", address: "Health OK Network Clinic", mobile: COMMON_NUMBER, active: true, city: "Network", district: "Maharashtra", image: "/Dr Rashmi Manek.jpg" }
+];
+
 export const getAllDoctors = (): Doctor[] => [
   ...sakriDoctors,
   ...nampurDoctors,
@@ -180,4 +196,6 @@ export const getAllDoctors = (): Doctor[] => [
   ...malegaonDoctors,
   ...jalgaonDoctors,
   ...nashikDoctors,
+  ...networkDoctors,
 ];
+
