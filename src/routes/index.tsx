@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import {
   Stethoscope, MapPin, Phone, MessageCircle, ShieldCheck, Clock, HeartPulse,
   Users, Award, Wallet, Wifi, Calendar, Search, ArrowRight, Star,
