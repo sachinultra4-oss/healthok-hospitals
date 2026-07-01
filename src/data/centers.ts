@@ -20,7 +20,7 @@ export interface Center {
   doctors: Doctor[];
 }
 
-const COMMON_NUMBER = "+917588517991";
+const COMMON_NUMBER = "+917030666321";
 
 // ============================================================
 // SAKRI DOCTORS
@@ -128,7 +128,7 @@ const malegaonDoctors: Doctor[] = [
   { name: "Dr. Yogendra Pawar", qualification: "BAMS", address: "Yashvant Clinic, Karanjgavhan, Malegaon", mobile: COMMON_NUMBER, active: true, city: "Malegaon", district: "Nashik", image: "/__l5e/assets-v1/d4bcd2a4-3b74-4379-a7c7-44fba3975617/Dr Yogendra Pawar.jpg" },
   { name: "Dr. Ramesh Gavhane", qualification: "DHMS/CCMP", address: "Nimgaon Sai Samarth Clinic, Nimgaon, Malegaon", mobile: COMMON_NUMBER, active: true, city: "Malegaon", district: "Nashik", image: "" },
   { name: "Dr. Hemangi Suryavanshi", qualification: "BHMS", address: "Shriram Clinic, Saundane, Malegaon", mobile: COMMON_NUMBER, active: true, city: "Malegaon", district: "Nashik", image: "/__l5e/assets-v1/863c1f7b-53cc-4a52-9f4f-7791680edc18/Dr Hemangi Suryawanshi.jpg" },
-  { name: "Dr. Rupali Pagar", qualification: "BHMS/CCMP", address: "Vithai Clinic, Panchganga, Nanavati Petrol Pump, Malegaon", mobile: COMMON_NUMBER, active: true, city: "Malegaon", district: "Nashik", image: "/__l5e/assets-v1/1dde800a-caea-41a6-b67a-49683d46968a/Dr Rupali Pagar.jpg" },
+  { name: "Dr. Rupali Pagar", qualification: "BHMS, CCH, CGO, CCMP", address: "Vithai Clinic, Panchganga, Nanavati Petrol Pump, Malegaon", mobile: COMMON_NUMBER, active: true, city: "Malegaon", district: "Nashik", image: "/__l5e/assets-v1/1dde800a-caea-41a6-b67a-49683d46968a/Dr Rupali Pagar.jpg" },
   { name: "Dr. Sagar Kakde", qualification: "BAMS", address: "Sukhkarta Clinic, Krushinagar, Malegaon", mobile: COMMON_NUMBER, active: true, city: "Malegaon", district: "Nashik", image: "/__l5e/assets-v1/779882c2-4c28-4c34-a47a-9b4641b51121/Dr Sagar Kakde.jpg" },
   { name: "Dr. Pravin Salunke", qualification: "BAMS", address: "Mauli Hospital, A/P Savkar Wadi, Malegaon", mobile: COMMON_NUMBER, active: true, city: "Malegaon", district: "Nashik", image: "/__l5e/assets-v1/613b8296-816e-4a06-bff7-b937639cc6a9/Dr Pravin Salunkhe.jpg" },
   { name: "Dr. Seema Salunke", qualification: "BAMS", address: "Mauli Hospital, A/P Savkar Wadi, Malegaon", mobile: COMMON_NUMBER, active: true, city: "Malegaon", district: "Nashik", image: "/__l5e/assets-v1/84036e97-f064-45b2-8ff0-bb00e5b205f3/Dr Seema Salunke.jpg" },
@@ -144,7 +144,7 @@ const jalgaonDoctors: Doctor[] = [
   { name: "Dr. Minakshi Patil", qualification: "BAMS", address: "Mauli Maternity & Nursing Home, Walmic Nagar, Asoda Road, Jalgaon", mobile: COMMON_NUMBER, active: true, city: "Jalgaon", district: "Jalgaon", image: "/__l5e/assets-v1/11ffd8c7-7e55-448c-8dc9-c53a5f0e83c4/Dr Minakshi Patil.jpg" },
   { name: "Dr. Digambar D Ugale", qualification: "BAMS", registration: "I-21340-A1", address: "Dhanwantari Clinic, 33/A, Sant Gulab Baba Colony, Meharun Road, Jalgaon", mobile: COMMON_NUMBER, active: true, city: "Jalgaon", district: "Jalgaon", image: "/__l5e/assets-v1/7af9822f-51f0-4b9f-b358-8b0f67ed44e6/Dr Digambar Ugle.jpg" },
   { name: "Dr. Nitin Patil", qualification: "", address: "Shree Sai Clinic, Khote Nagar Stop, Sant Mirabai Nagar Road, Jalgaon", mobile: COMMON_NUMBER, active: true, city: "Jalgaon", district: "Jalgaon", image: "" },
-  { name: "Dr. Snehal Chaudhari", qualification: "BAMS", address: "Swasth Clinic, Indraprasth Nagar, Near Riksha Stop, Federation Road, Jalgaon", mobile: COMMON_NUMBER, active: true, city: "Jalgaon", district: "Jalgaon", image: "/__l5e/assets-v1/012269a0-155e-4059-ab64-542ac84cad04/Dr Snehal Chaudhari.jpg" },
+  { name: "Dr. Snehal Chaudhari", qualification: "BAMS", address: "Shree Sai Clinic, Khotenagar Stop, Sant Mirabai Nagar Road, Jalgaon", mobile: COMMON_NUMBER, active: true, city: "Jalgaon", district: "Jalgaon", image: "/__l5e/assets-v1/012269a0-155e-4059-ab64-542ac84cad04/Dr Snehal Chaudhari.jpg" },
   { name: "Dr. Sandeep Chaudhari", qualification: "BHMS", address: "Swasth Clinic, Indraprasth Nagar, Federation Road, Jalgaon", mobile: COMMON_NUMBER, active: true, city: "Jalgaon", district: "Jalgaon", image: "/__l5e/assets-v1/1c7ff3aa-d78f-4834-b98a-2ff39df62e7e/Dr Sandeep Chaudhari.jpg" },
   { name: "Dr. Shrikrishna Chaudhari", qualification: "BAMS, FEM, CCH, CGO", registration: "I-101451-A", address: "Narayani Clinic, Vedant Medical, Swatantrya Chowk, Nashirabad, Jalgaon", mobile: COMMON_NUMBER, active: true, city: "Jalgaon", district: "Jalgaon", image: "/__l5e/assets-v1/bbe46e1a-a6d9-45a2-a688-d9d05daee104/Dr Shreekrushna Chaudhari.jpg" },
   { name: "Dr. Rajdeep G Shimpi", qualification: "BAMS, PGDEMS, CGO, CCH, CSV", registration: "I-96847-A", address: "Parth Clinic Day Care Center, Jalgaon", mobile: COMMON_NUMBER, active: true, city: "Jalgaon", district: "Jalgaon", image: "" },
@@ -185,6 +185,13 @@ const networkDoctors: Doctor[] = [
   { name: "Dr. Rashmi Manek", qualification: "BAMS", address: "Health OK Network Clinic", mobile: COMMON_NUMBER, active: true, city: "Network", district: "Maharashtra", image: "/__l5e/assets-v1/44d7a628-07f0-4f78-9280-545c8167920c/Dr Rashmi Manek.jpg" }
 ];
 
+// ============================================================
+// THANE DOCTORS
+// ============================================================
+const thaneDoctors: Doctor[] = [
+  { name: "Dr. Bhupesh Patil", qualification: "BAMS", address: "Health OK Clinic, Thane", mobile: COMMON_NUMBER, active: true, city: "Thane", district: "Thane", image: "/__l5e/assets-v1/202b330e-b24b-411b-906e-68e79ea7b7da/Dr Bhupesh Patil.jpg" }
+];
+
 export const getAllDoctors = (): Doctor[] => [
   ...sakriDoctors,
   ...nampurDoctors,
@@ -196,6 +203,7 @@ export const getAllDoctors = (): Doctor[] => [
   ...malegaonDoctors,
   ...jalgaonDoctors,
   ...nashikDoctors,
+  ...thaneDoctors,
   ...networkDoctors,
 ];
 
