@@ -6,7 +6,7 @@ import {
   MapPin,
   GraduationCap,
   CheckCircle,
-  XCircle,
+  
   MessageCircle,
   ArrowLeft,
   Stethoscope,
