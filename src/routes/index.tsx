@@ -559,8 +559,23 @@ function Resources() {
 
 /* ---------------- FAQ ---------------- */
 function FAQ() {
-  const faqs = [
-    { q: "How do I book an appointment?", a: "Tap any 'Book Appointment' button — it opens WhatsApp on +91 7030666321. Send your details and our team confirms within 2 hours." },
+  const faqs: { q: string; a: React.ReactNode }[] = [
+    {
+      q: "How do I book an appointment?",
+      a: (
+        <div className="space-y-3">
+          <p>We encourage you to find a suitable Health OK Center near you. You can book an appointment before visiting, or you can directly visit that center. We always encourage direct consultation over online consultation.</p>
+          <p>Even so, if you'd like an online consultation, we're happy to help. You can request an online consultation with our expert doctors:</p>
+          <ol className="list-decimal ml-5 space-y-1">
+            <li>Request online consultation</li>
+            <li>Proceed with payment</li>
+            <li>You'll receive consultation details after payment</li>
+            <li>Make sure you have a good network connection</li>
+            <li>For any appointment-related issue, you can call us on 7030666321</li>
+          </ol>
+        </div>
+      ),
+    },
     { q: "Are the doctors qualified and verified?", a: "Yes. Every doctor in our network holds a valid MBBS, BAMS, or BHMS qualification and is verified by our clinical team before joining." },
     { q: "Do you offer 24×7 consultant backup?", a: "Absolutely — senior consultants are reachable round the clock for emergencies and second opinions." },
     { q: "Is online consultation available?", a: "Yes, you can book tele-consultations on WhatsApp, video, or audio call — same trusted doctors, from home." },
