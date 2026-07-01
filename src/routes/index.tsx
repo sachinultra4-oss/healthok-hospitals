@@ -83,7 +83,7 @@ function Header() {
         </nav>
         <div className="flex items-center gap-2">
           <a href={PHONE} className="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium text-foreground/80 hover:text-primary">
-            <Phone className="w-4 h-4" /> 7588517991
+            <Phone className="w-4 h-4" /> 7030666321
           </a>
           <a href={WHATSAPP} target="_blank" rel="noreferrer"
             className="inline-flex items-center gap-1.5 rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold hover:opacity-90 transition">
@@ -128,7 +128,7 @@ function Hero() {
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <a href={WHATSAPP} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-secondary text-secondary-foreground px-5 py-3 font-semibold hover:opacity-90 transition shadow-card">
-              <Calendar className="w-4 h-4" /> Book Appointment · 7588517991
+              <Calendar className="w-4 h-4" /> Book Appointment · 7030666321
             </a>
             <a href={WHATSAPP} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-white/10 text-white ring-1 ring-white/30 backdrop-blur px-5 py-3 font-semibold hover:bg-white/20 transition">
               <MessageCircle className="w-4 h-4" /> Consult on WhatsApp
@@ -161,7 +161,7 @@ function Hero() {
           </div>
           <div className="absolute -top-3 -right-2 sm:right-6 bg-secondary text-secondary-foreground rounded-2xl shadow-card px-4 py-3">
             <p className="text-xs font-medium">Customer Care</p>
-            <p className="text-sm font-extrabold">+91 7588517991</p>
+            <p className="text-sm font-extrabold">+91 7030666321</p>
           </div>
         </div>
       </div>
@@ -252,7 +252,7 @@ function PatientTrust() {
             <p className="text-sm font-semibold text-primary uppercase tracking-wider">For Patients</p>
             <h2 className="mt-2 text-3xl md:text-4xl font-extrabold">Why Patients Trust Health OK</h2>
           </div>
-          <a href={PHONE} className="text-sm font-semibold text-primary">Customer Care · 7588517991 →</a>
+          <a href={PHONE} className="text-sm font-semibold text-primary">Customer Care · 7030666321 →</a>
         </div>
         <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {items.map(({ i: Icon, t, d }) => (
@@ -560,11 +560,11 @@ function Resources() {
 /* ---------------- FAQ ---------------- */
 function FAQ() {
   const faqs = [
-    { q: "How do I book an appointment?", a: "Tap any 'Book Appointment' button — it opens WhatsApp on +91 7588517991. Send your details and our team confirms within 2 hours." },
+    { q: "How do I book an appointment?", a: "Tap any 'Book Appointment' button — it opens WhatsApp on +91 7030666321. Send your details and our team confirms within 2 hours." },
     { q: "Are the doctors qualified and verified?", a: "Yes. Every doctor in our network holds a valid MBBS, BAMS, or BHMS qualification and is verified by our clinical team before joining." },
     { q: "Do you offer 24×7 consultant backup?", a: "Absolutely — senior consultants are reachable round the clock for emergencies and second opinions." },
     { q: "Is online consultation available?", a: "Yes, you can book tele-consultations on WhatsApp, video, or audio call — same trusted doctors, from home." },
-    { q: "What number should I call for any enquiry?", a: "Please call or WhatsApp +91 7588517991 — our care team responds within hours." },
+    { q: "What number should I call for any enquiry?", a: "Please call or WhatsApp +91 7030666321 — our care team responds within hours." },
     { q: "Are there any hidden charges?", a: "No. We follow a strict zero-hidden-fee policy. All consultation costs are shared upfront." },
   ];
   const [open, setOpen] = useState<number | null>(0);
@@ -602,9 +602,9 @@ function Contact() {
           <p className="mt-3 text-muted-foreground">Our care team responds within hours.</p>
           <div className="mt-8 space-y-4">
             {[
-              { i: Calendar, t: "Appointment Booking", v: "+91 7588 517 991", href: PHONE },
-              { i: Phone, t: "Customer Care", v: "+91 7588 517 991", href: PHONE },
-              { i: MessageCircle, t: "Online Consultation", v: "+91 7588 517 991", href: WHATSAPP },
+              { i: Calendar, t: "Appointment Booking", v: "+91 7030 666 321", href: PHONE },
+              { i: Phone, t: "Customer Care", v: "+91 7030 666 321", href: PHONE },
+              { i: MessageCircle, t: "Online Consultation", v: "+91 7030 666 321", href: WHATSAPP },
               { i: Mail, t: "Email", v: "care@healthokhospitals.com\n\n", href: "mailto:care@healthokhospitals.com" },
               { i: Clock, t: "Office Hours", v: "Mon–Sat, 9:00 AM – 6:00 PM IST" },
             ].map(({ i: Icon, t, v, href }) => {
@@ -642,7 +642,7 @@ function ContactForm() {
     const text = encodeURIComponent(
       `New inquiry from Health OK website:\n\nName: ${form.name}\nPhone: ${form.phone}\nCity: ${form.city}\nRole: ${form.role}\n\n${form.question}`
     );
-    window.open(`https://wa.me/917588517991?text=${text}`, "_blank");
+    window.open(`https://wa.me/917030666321?text=${text}`, "_blank");
     setSent(true);
   };
   return (
@@ -722,8 +722,8 @@ function Footer() {
         <div>
           <p className="text-sm font-bold tracking-widest text-secondary">CONTACT</p>
           <ul className="mt-4 space-y-2 text-sm text-white/75">
-            <li>Appointment <br /><a href={PHONE} className="text-white font-semibold">+91 7588 517 991</a></li>
-            <li>Customer Care <br /><a href={PHONE} className="text-white font-semibold">+91 7588 517 991</a></li>
+            <li>Appointment <br /><a href={PHONE} className="text-white font-semibold">+91 7030 666 321</a></li>
+            <li>Customer Care <br /><a href={PHONE} className="text-white font-semibold">+91 7030 666 321</a></li>
             <li><a href="mailto:care@healthokhospitals.com" className="hover:text-secondary whitespace-pre-wrap">care@healthokhospitals.com\n\n</a></li>
           </ul>
         </div>
