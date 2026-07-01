@@ -23,8 +23,13 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const WHATSAPP = "https://wa.me/917588517991";
-const PHONE = "tel:+917588517991";
+const CARE_NUMBER = "7030666321";
+const WHATSAPP = `https://wa.me/91${CARE_NUMBER}`;
+const PHONE = `tel:+91${CARE_NUMBER}`;
+// TODO: replace with official Health OK WhatsApp Community link
+const WHATSAPP_COMMUNITY = "PASTE_HEALTH_OK_WHATSAPP_COMMUNITY_LINK_HERE";
+const waForDoctor = (name: string, clinic?: string) =>
+  `${WHATSAPP}?text=${encodeURIComponent(`Hi, I'd like to book an appointment with ${name}${clinic ? ` at ${clinic}` : ""}. Please assist.`)}`;
 
 function Index() {
   return (

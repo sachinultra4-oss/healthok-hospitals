@@ -122,11 +122,11 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
   const [isAdding, setIsAdding] = useState(false);
 
   const [newDoctor, setNewDoctor] = useState<Partial<Doctor>>({
-    name: "", qualification: "", address: "", mobile: "+917588517991",
+    name: "", qualification: "", address: "", mobile: "+917030666321",
     city: "", district: "", active: true, image: "",
   });
   const [newCenter, setNewCenter] = useState<Partial<Center>>({
-    city: "", fullAddress: "", whatsappNumber: "+917588517991",
+    city: "", fullAddress: "", whatsappNumber: "+917030666321",
   });
 
   useEffect(() => {
@@ -174,7 +174,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
       name: newDoctor.name!,
       qualification: newDoctor.qualification || "",
       address: newDoctor.address || "",
-      mobile: newDoctor.mobile || "+917588517991",
+      mobile: newDoctor.mobile || "+917030666321",
       active: true,
       city: newDoctor.city!,
       district: newDoctor.district || "",
@@ -183,7 +183,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
     persistDoctors([...doctorList, doctor]);
     toast.success(`Added ${newDoctor.name}`);
     setIsAdding(false);
-    setNewDoctor({ name: "", qualification: "", address: "", mobile: "+917588517991", city: "", district: "", active: true, image: "" });
+    setNewDoctor({ name: "", qualification: "", address: "", mobile: "+917030666321", city: "", district: "", active: true, image: "" });
   };
 
   const handleSaveDoctor = () => {
@@ -212,13 +212,13 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
     const center: Center = {
       city: newCenter.city!,
       doctorsCount: 0,
-      whatsappNumber: newCenter.whatsappNumber || "+917588517991",
+      whatsappNumber: newCenter.whatsappNumber || "+917030666321",
       fullAddress: newCenter.fullAddress || "",
     };
     persistCenters([...centerList, center]);
     toast.success(`Added ${newCenter.city} center`);
     setIsAdding(false);
-    setNewCenter({ city: "", fullAddress: "", whatsappNumber: "+917588517991" });
+    setNewCenter({ city: "", fullAddress: "", whatsappNumber: "+917030666321" });
   };
 
   const handleSaveCenter = () => {

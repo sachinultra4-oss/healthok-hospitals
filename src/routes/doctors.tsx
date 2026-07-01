@@ -15,8 +15,8 @@ import { getAllDoctors, type Doctor } from "@/data/centers";
 import logo from "@/assets/logo.png.asset.json";
 import { DoctorAvatar } from "@/components/DoctorAvatar";
 
-const WHATSAPP = "https://wa.me/917588517991";
-const COMMON = "+917588517991";
+const WHATSAPP = "https://wa.me/917030666321";
+const COMMON = "+917030666321";
 
 export const Route = createFileRoute("/doctors")({
   head: () => ({
@@ -241,7 +241,7 @@ function DoctorsPage() {
 
       <footer className="border-t border-border mt-8">
         <div className="container-px mx-auto max-w-7xl px-4 py-6 text-sm text-muted-foreground text-center">
-          © {new Date().getFullYear()} Health OK Hospitals · +91 7588517991
+          © {new Date().getFullYear()} Health OK Hospitals · +91 7030666321
         </div>
       </footer>
     </div>
