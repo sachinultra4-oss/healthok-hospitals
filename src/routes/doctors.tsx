@@ -6,7 +6,7 @@ import {
   MapPin,
   GraduationCap,
   CheckCircle,
-  XCircle,
+  
   MessageCircle,
   ArrowLeft,
   Stethoscope,
@@ -15,8 +15,8 @@ import { getAllDoctors, type Doctor } from "@/data/centers";
 import logo from "@/assets/logo.png.asset.json";
 import { DoctorAvatar } from "@/components/DoctorAvatar";
 
-const WHATSAPP = "https://wa.me/917588517991";
-const COMMON = "+917588517991";
+const WHATSAPP = "https://wa.me/917030666321";
+const COMMON = "+917030666321";
 
 export const Route = createFileRoute("/doctors")({
   head: () => ({
@@ -38,15 +38,26 @@ export const Route = createFileRoute("/doctors")({
 });
 
 function DoctorsPage() {
-  const allDoctors = useMemo(() => getAllDoctors(), []);
+  // Only expose active doctors on the public site
+  const allDoctors = useMemo(() => getAllDoctors().filter((d) => d.active), []);
   const [searchTerm, setSearchTerm] = useState("");
   const [cityFilter, setCityFilter] = useState<string>("all");
-  const [statusFilter, setStatusFilter] = useState<"all" | "active" | "inactive">("all");
 
-  const cities = useMemo(
-    () => ["all", ...Array.from(new Set(allDoctors.map((d) => d.city))).sort()],
-    [allDoctors],
-  );
+  // Grouped city list: known regional grouping first, then any extras
+  const cities = useMemo(() => {
+    const preferredOrder = [
+      "Nashik", "Malegaon", "Nampur",
+      "Jalgaon", "Chalisgaon", "Amalner", "Parola",
+      "Dhule", "Shirpur", "Dondaicha", "Sakri",
+      "Thane",
+    ];
+    const present = new Set(allDoctors.map((d) => d.city));
+    // Ensure Thane always available in the dropdown even if no doctors yet
+    present.add("Thane");
+    const ordered = preferredOrder.filter((c) => present.has(c));
+    const extras = Array.from(present).filter((c) => !preferredOrder.includes(c)).sort();
+    return ["all", ...ordered, ...extras];
+  }, [allDoctors]);
 
   const filtered = useMemo(() => {
     const q = searchTerm.toLowerCase().trim();
@@ -58,18 +69,15 @@ function DoctorsPage() {
         doc.address.toLowerCase().includes(q) ||
         doc.city.toLowerCase().includes(q);
       const matchesCity = cityFilter === "all" || doc.city === cityFilter;
-      const matchesStatus =
-        statusFilter === "all" || (statusFilter === "active" ? doc.active : !doc.active);
-      return matchesSearch && matchesCity && matchesStatus;
+      return matchesSearch && matchesCity;
     });
-  }, [allDoctors, searchTerm, cityFilter, statusFilter]);
+  }, [allDoctors, searchTerm, cityFilter]);
 
   const handleContact = (doc: Doctor) => {
-    const num = (doc.mobile || COMMON).replace(/[^0-9]/g, "");
     const msg = encodeURIComponent(
-      `Hello, I'd like to book an appointment with ${doc.name} (${doc.city}) via Health OK Hospitals.`,
+      `Hi, I'd like to book an appointment with ${doc.name} at ${doc.address || doc.city}. Please assist.`,
     );
-    window.open(`https://wa.me/${num}?text=${msg}`, "_blank");
+    window.open(`https://wa.me/91${COMMON.replace(/[^0-9]/g, "").slice(-10)}?text=${msg}`, "_blank");
   };
 
   return (
@@ -126,13 +134,12 @@ function DoctorsPage() {
               </h1>
               <p className="mt-3 text-muted-foreground max-w-2xl">
                 {allDoctors.length}+ verified doctors across {cities.length - 1} towns in
-                Maharashtra. Filter by city, status or search by name & clinic.
+                Maharashtra. Filter by city or search by name & clinic.
               </p>
             </div>
             <div className="flex gap-3">
               <Stat n={allDoctors.length} l="Doctors" />
               <Stat n={cities.length - 1} l="Cities" />
-              <Stat n={allDoctors.filter((d) => d.active).length} l="Active" />
             </div>
           </div>
         </div>
@@ -140,8 +147,8 @@ function DoctorsPage() {
 
       {/* Filters */}
       <section className="container-px mx-auto max-w-7xl px-4 py-8">
-        <div className="grid md:grid-cols-3 gap-3 mb-6">
-          <div className="relative md:col-span-1">
+        <div className="grid md:grid-cols-2 gap-3 mb-6">
+          <div className="relative">
             <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <input
               type="text"
@@ -156,20 +163,34 @@ function DoctorsPage() {
             onChange={(e) => setCityFilter(e.target.value)}
             className="px-3 py-2.5 rounded-lg border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary"
           >
-            {cities.map((c) => (
-              <option key={c} value={c}>
-                {c === "all" ? "All Cities" : c}
-              </option>
-            ))}
-          </select>
-          <select
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value as "all" | "active" | "inactive")}
-            className="px-3 py-2.5 rounded-lg border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-          >
-            <option value="all">All Status</option>
-            <option value="active">Active Only</option>
-            <option value="inactive">Inactive Only</option>
+            <option value="all">All Cities</option>
+            <optgroup label="Nashik District">
+              {cities.filter((c) => ["Nashik", "Malegaon", "Nampur"].includes(c)).map((c) => (
+                <option key={c} value={c}>{c}</option>
+              ))}
+            </optgroup>
+            <optgroup label="Jalgaon District">
+              {cities.filter((c) => ["Jalgaon", "Chalisgaon", "Amalner", "Parola"].includes(c)).map((c) => (
+                <option key={c} value={c}>{c}</option>
+              ))}
+            </optgroup>
+            <optgroup label="Dhule District">
+              {cities.filter((c) => ["Dhule", "Shirpur", "Dondaicha", "Sakri"].includes(c)).map((c) => (
+                <option key={c} value={c}>{c}</option>
+              ))}
+            </optgroup>
+            <optgroup label="Thane District">
+              {cities.filter((c) => ["Thane"].includes(c)).map((c) => (
+                <option key={c} value={c}>{c}</option>
+              ))}
+            </optgroup>
+            {cities.filter((c) => c !== "all" && !["Nashik","Malegaon","Nampur","Jalgaon","Chalisgaon","Amalner","Parola","Dhule","Shirpur","Dondaicha","Sakri","Thane"].includes(c)).length > 0 && (
+              <optgroup label="Other">
+                {cities.filter((c) => c !== "all" && !["Nashik","Malegaon","Nampur","Jalgaon","Chalisgaon","Amalner","Parola","Dhule","Shirpur","Dondaicha","Sakri","Thane"].includes(c)).map((c) => (
+                  <option key={c} value={c}>{c}</option>
+                ))}
+              </optgroup>
+            )}
           </select>
         </div>
 
@@ -192,15 +213,9 @@ function DoctorsPage() {
               >
                 <div className="flex items-start justify-between gap-2 mb-3">
                   <DoctorAvatar name={doc.name} image={doc.image} size={64} />
-                  {doc.active ? (
-                    <span className="inline-flex items-center gap-1 text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
-                      <CheckCircle className="w-3 h-3" /> Active
-                    </span>
-                  ) : (
-                    <span className="inline-flex items-center gap-1 text-xs font-medium text-muted-foreground bg-muted px-2 py-0.5 rounded-full">
-                      <XCircle className="w-3 h-3" /> Inactive
-                    </span>
-                  )}
+                  <span className="inline-flex items-center gap-1 text-xs font-medium text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
+                    <CheckCircle className="w-3 h-3" /> Verified
+                  </span>
                 </div>
                 <h3 className="font-bold text-base leading-tight">{doc.name}</h3>
                 {doc.qualification && (
@@ -241,7 +256,7 @@ function DoctorsPage() {
 
       <footer className="border-t border-border mt-8">
         <div className="container-px mx-auto max-w-7xl px-4 py-6 text-sm text-muted-foreground text-center">
-          © {new Date().getFullYear()} Health OK Hospitals · +91 7588517991
+          © {new Date().getFullYear()} Health OK Hospitals · +91 7030666321
         </div>
       </footer>
     </div>

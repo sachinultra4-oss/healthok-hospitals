@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import {
   Stethoscope, MapPin, Phone, MessageCircle, ShieldCheck, Clock, HeartPulse,
   Users, Award, Wallet, Wifi, Calendar, Search, ArrowRight, Star,
@@ -23,8 +23,13 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const WHATSAPP = "https://wa.me/917588517991";
-const PHONE = "tel:+917588517991";
+const CARE_NUMBER = "7030666321";
+const WHATSAPP = `https://wa.me/91${CARE_NUMBER}`;
+const PHONE = `tel:+91${CARE_NUMBER}`;
+// TODO: replace with official Health OK WhatsApp Community link
+const WHATSAPP_COMMUNITY = "PASTE_HEALTH_OK_WHATSAPP_COMMUNITY_LINK_HERE";
+const waForDoctor = (name: string, clinic?: string) =>
+  `${WHATSAPP}?text=${encodeURIComponent(`Hi, I'd like to book an appointment with ${name}${clinic ? ` at ${clinic}` : ""}. Please assist.`)}`;
 
 function Index() {
   return (
@@ -56,8 +61,8 @@ function Index() {
 function Header() {
   const [open, setOpen] = useState(false);
   const links = [
-    { label: "Home", href: "#home" },
-    { label: "Centres", href: "#centres" },
+    { label: "Home", href: "/" },
+    { label: "Centres", href: "/centres" },
     { label: "Doctors", href: "/doctors" },
     { label: "Contact", href: "#contact" },
   ];
@@ -78,7 +83,7 @@ function Header() {
         </nav>
         <div className="flex items-center gap-2">
           <a href={PHONE} className="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium text-foreground/80 hover:text-primary">
-            <Phone className="w-4 h-4" /> 7588517991
+            <Phone className="w-4 h-4" /> 7030666321
           </a>
           <a href={WHATSAPP} target="_blank" rel="noreferrer"
             className="inline-flex items-center gap-1.5 rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold hover:opacity-90 transition">
@@ -123,7 +128,7 @@ function Hero() {
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <a href={WHATSAPP} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-secondary text-secondary-foreground px-5 py-3 font-semibold hover:opacity-90 transition shadow-card">
-              <Calendar className="w-4 h-4" /> Book Appointment · 7588517991
+              <Calendar className="w-4 h-4" /> Book Appointment · 7030666321
             </a>
             <a href={WHATSAPP} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-white/10 text-white ring-1 ring-white/30 backdrop-blur px-5 py-3 font-semibold hover:bg-white/20 transition">
               <MessageCircle className="w-4 h-4" /> Consult on WhatsApp
@@ -156,7 +161,7 @@ function Hero() {
           </div>
           <div className="absolute -top-3 -right-2 sm:right-6 bg-secondary text-secondary-foreground rounded-2xl shadow-card px-4 py-3">
             <p className="text-xs font-medium">Customer Care</p>
-            <p className="text-sm font-extrabold">+91 7588517991</p>
+            <p className="text-sm font-extrabold">+91 7030666321</p>
           </div>
         </div>
       </div>
@@ -247,7 +252,7 @@ function PatientTrust() {
             <p className="text-sm font-semibold text-primary uppercase tracking-wider">For Patients</p>
             <h2 className="mt-2 text-3xl md:text-4xl font-extrabold">Why Patients Trust Health OK</h2>
           </div>
-          <a href={PHONE} className="text-sm font-semibold text-primary">Customer Care · 7588517991 →</a>
+          <a href={PHONE} className="text-sm font-semibold text-primary">Customer Care · 7030666321 →</a>
         </div>
         <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {items.map(({ i: Icon, t, d }) => (
@@ -471,7 +476,7 @@ function FeaturedDoctors() {
                 {d.qualification && <p className="text-xs text-primary font-semibold truncate">{d.qualification}</p>}
                 <p className="mt-0.5 text-xs text-muted-foreground flex items-center gap-1"><MapPin className="w-3 h-3" /> {d.city}, {d.district}</p>
               </div>
-              <a href={WHATSAPP} target="_blank" rel="noreferrer" aria-label={`Book ${d.name}`} className="shrink-0 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
+              <a href={waForDoctor(d.name, d.address)} target="_blank" rel="noreferrer" aria-label={`Book ${d.name}`} className="shrink-0 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
                 <MessageCircle className="w-4 h-4" />
               </a>
             </div>
@@ -492,20 +497,20 @@ function FeaturedDoctors() {
 /* ---------------- Explore CTA ---------------- */
 function ExploreCTA() {
   const cards = [
-    { icon: MapPin, t: "Explore all Health OK Centres", d: "Find locations, centre doctors, maps and WhatsApp appointment booking.", cta: "View centres" },
-    { icon: Search, t: "Search the Doctors Network", d: "Browse every registered doctor by name, qualification, clinic or city.", cta: "Find a doctor" },
+    { icon: MapPin, t: "Explore all Health OK Centres", d: "Find locations, centre doctors, maps and WhatsApp appointment booking.", cta: "View centres", href: "/centres" },
+    { icon: Search, t: "Search the Doctors Network", d: "Browse every registered doctor by name, qualification, clinic or city.", cta: "Find a doctor", href: "/doctors" },
   ];
   return (
     <section id="centres" className="py-16 md:py-20 bg-muted/40">
       <div className="container-px mx-auto max-w-7xl grid md:grid-cols-2 gap-5">
-        {cards.map(({ icon: Icon, t, d, cta }) => (
+        {cards.map(({ icon: Icon, t, d, cta, href }) => (
           <div key={t} className="rounded-3xl bg-card p-8 border border-border shadow-soft flex flex-col md:flex-row md:items-center gap-5">
             <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center"><Icon className="w-6 h-6" /></div>
             <div className="flex-1">
               <h3 className="text-xl font-bold">{t}</h3>
               <p className="mt-1 text-sm text-muted-foreground">{d}</p>
             </div>
-            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-primary font-semibold">{cta} <ArrowRight className="w-4 h-4" /></a>
+            <a href={href} className="inline-flex items-center gap-2 text-primary font-semibold">{cta} <ArrowRight className="w-4 h-4" /></a>
           </div>
         ))}
       </div>
@@ -542,7 +547,8 @@ function Resources() {
           ))}
         </div>
         <div className="mt-10 text-center">
-          <a href={WHATSAPP} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-success text-white px-5 py-3 font-semibold shadow-card">
+          {/* TODO: replace with official Health OK WhatsApp Community link */}
+          <a href={WHATSAPP_COMMUNITY} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-success text-white px-5 py-3 font-semibold shadow-card">
             <MessageCircle className="w-4 h-4" /> Chat for Daily Health Tips on WhatsApp
           </a>
         </div>
@@ -553,12 +559,27 @@ function Resources() {
 
 /* ---------------- FAQ ---------------- */
 function FAQ() {
-  const faqs = [
-    { q: "How do I book an appointment?", a: "Tap any 'Book Appointment' button — it opens WhatsApp on +91 7588517991. Send your details and our team confirms within 2 hours." },
+  const faqs: { q: string; a: React.ReactNode }[] = [
+    {
+      q: "How do I book an appointment?",
+      a: (
+        <div className="space-y-3">
+          <p>We encourage you to find a suitable Health OK Center near you. You can book an appointment before visiting, or you can directly visit that center. We always encourage direct consultation over online consultation.</p>
+          <p>Even so, if you'd like an online consultation, we're happy to help. You can request an online consultation with our expert doctors:</p>
+          <ol className="list-decimal ml-5 space-y-1">
+            <li>Request online consultation</li>
+            <li>Proceed with payment</li>
+            <li>You'll receive consultation details after payment</li>
+            <li>Make sure you have a good network connection</li>
+            <li>For any appointment-related issue, you can call us on 7030666321</li>
+          </ol>
+        </div>
+      ),
+    },
     { q: "Are the doctors qualified and verified?", a: "Yes. Every doctor in our network holds a valid MBBS, BAMS, or BHMS qualification and is verified by our clinical team before joining." },
     { q: "Do you offer 24×7 consultant backup?", a: "Absolutely — senior consultants are reachable round the clock for emergencies and second opinions." },
     { q: "Is online consultation available?", a: "Yes, you can book tele-consultations on WhatsApp, video, or audio call — same trusted doctors, from home." },
-    { q: "What number should I call for any enquiry?", a: "Please call or WhatsApp +91 7588517991 — our care team responds within hours." },
+    { q: "What number should I call for any enquiry?", a: "Please call or WhatsApp +91 7030666321 — our care team responds within hours." },
     { q: "Are there any hidden charges?", a: "No. We follow a strict zero-hidden-fee policy. All consultation costs are shared upfront." },
   ];
   const [open, setOpen] = useState<number | null>(0);
@@ -596,9 +617,9 @@ function Contact() {
           <p className="mt-3 text-muted-foreground">Our care team responds within hours.</p>
           <div className="mt-8 space-y-4">
             {[
-              { i: Calendar, t: "Appointment Booking", v: "+91 7588 517 991", href: PHONE },
-              { i: Phone, t: "Customer Care", v: "+91 7588 517 991", href: PHONE },
-              { i: MessageCircle, t: "Online Consultation", v: "+91 7588 517 991", href: WHATSAPP },
+              { i: Calendar, t: "Appointment Booking", v: "+91 7030 666 321", href: PHONE },
+              { i: Phone, t: "Customer Care", v: "+91 7030 666 321", href: PHONE },
+              { i: MessageCircle, t: "Online Consultation", v: "+91 7030 666 321", href: WHATSAPP },
               { i: Mail, t: "Email", v: "care@healthokhospitals.com\n\n", href: "mailto:care@healthokhospitals.com" },
               { i: Clock, t: "Office Hours", v: "Mon–Sat, 9:00 AM – 6:00 PM IST" },
             ].map(({ i: Icon, t, v, href }) => {
@@ -636,7 +657,7 @@ function ContactForm() {
     const text = encodeURIComponent(
       `New inquiry from Health OK website:\n\nName: ${form.name}\nPhone: ${form.phone}\nCity: ${form.city}\nRole: ${form.role}\n\n${form.question}`
     );
-    window.open(`https://wa.me/917588517991?text=${text}`, "_blank");
+    window.open(`https://wa.me/917030666321?text=${text}`, "_blank");
     setSent(true);
   };
   return (
@@ -716,8 +737,8 @@ function Footer() {
         <div>
           <p className="text-sm font-bold tracking-widest text-secondary">CONTACT</p>
           <ul className="mt-4 space-y-2 text-sm text-white/75">
-            <li>Appointment <br /><a href={PHONE} className="text-white font-semibold">+91 7588 517 991</a></li>
-            <li>Customer Care <br /><a href={PHONE} className="text-white font-semibold">+91 7588 517 991</a></li>
+            <li>Appointment <br /><a href={PHONE} className="text-white font-semibold">+91 7030 666 321</a></li>
+            <li>Customer Care <br /><a href={PHONE} className="text-white font-semibold">+91 7030 666 321</a></li>
             <li><a href="mailto:care@healthokhospitals.com" className="hover:text-secondary whitespace-pre-wrap">care@healthokhospitals.com\n\n</a></li>
           </ul>
         </div>
