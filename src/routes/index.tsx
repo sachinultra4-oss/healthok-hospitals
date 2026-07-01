@@ -61,8 +61,8 @@ function Index() {
 function Header() {
   const [open, setOpen] = useState(false);
   const links = [
-    { label: "Home", href: "#home" },
-    { label: "Centres", href: "#centres" },
+    { label: "Home", href: "/" },
+    { label: "Centres", href: "/centres" },
     { label: "Doctors", href: "/doctors" },
     { label: "Contact", href: "#contact" },
   ];
@@ -476,7 +476,7 @@ function FeaturedDoctors() {
                 {d.qualification && <p className="text-xs text-primary font-semibold truncate">{d.qualification}</p>}
                 <p className="mt-0.5 text-xs text-muted-foreground flex items-center gap-1"><MapPin className="w-3 h-3" /> {d.city}, {d.district}</p>
               </div>
-              <a href={WHATSAPP} target="_blank" rel="noreferrer" aria-label={`Book ${d.name}`} className="shrink-0 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
+              <a href={waForDoctor(d.name, d.address)} target="_blank" rel="noreferrer" aria-label={`Book ${d.name}`} className="shrink-0 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
                 <MessageCircle className="w-4 h-4" />
               </a>
             </div>
@@ -497,20 +497,20 @@ function FeaturedDoctors() {
 /* ---------------- Explore CTA ---------------- */
 function ExploreCTA() {
   const cards = [
-    { icon: MapPin, t: "Explore all Health OK Centres", d: "Find locations, centre doctors, maps and WhatsApp appointment booking.", cta: "View centres" },
-    { icon: Search, t: "Search the Doctors Network", d: "Browse every registered doctor by name, qualification, clinic or city.", cta: "Find a doctor" },
+    { icon: MapPin, t: "Explore all Health OK Centres", d: "Find locations, centre doctors, maps and WhatsApp appointment booking.", cta: "View centres", href: "/centres" },
+    { icon: Search, t: "Search the Doctors Network", d: "Browse every registered doctor by name, qualification, clinic or city.", cta: "Find a doctor", href: "/doctors" },
   ];
   return (
     <section id="centres" className="py-16 md:py-20 bg-muted/40">
       <div className="container-px mx-auto max-w-7xl grid md:grid-cols-2 gap-5">
-        {cards.map(({ icon: Icon, t, d, cta }) => (
+        {cards.map(({ icon: Icon, t, d, cta, href }) => (
           <div key={t} className="rounded-3xl bg-card p-8 border border-border shadow-soft flex flex-col md:flex-row md:items-center gap-5">
             <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center"><Icon className="w-6 h-6" /></div>
             <div className="flex-1">
               <h3 className="text-xl font-bold">{t}</h3>
               <p className="mt-1 text-sm text-muted-foreground">{d}</p>
             </div>
-            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 text-primary font-semibold">{cta} <ArrowRight className="w-4 h-4" /></a>
+            <a href={href} className="inline-flex items-center gap-2 text-primary font-semibold">{cta} <ArrowRight className="w-4 h-4" /></a>
           </div>
         ))}
       </div>
@@ -547,7 +547,8 @@ function Resources() {
           ))}
         </div>
         <div className="mt-10 text-center">
-          <a href={WHATSAPP} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-success text-white px-5 py-3 font-semibold shadow-card">
+          {/* TODO: replace with official Health OK WhatsApp Community link */}
+          <a href={WHATSAPP_COMMUNITY} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-success text-white px-5 py-3 font-semibold shadow-card">
             <MessageCircle className="w-4 h-4" /> Chat for Daily Health Tips on WhatsApp
           </a>
         </div>
