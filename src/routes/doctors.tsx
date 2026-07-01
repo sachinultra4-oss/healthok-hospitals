@@ -134,7 +134,7 @@ function DoctorsPage() {
               </h1>
               <p className="mt-3 text-muted-foreground max-w-2xl">
                 {allDoctors.length}+ verified doctors across {cities.length - 1} towns in
-                Maharashtra. Filter by city, status or search by name & clinic.
+                Maharashtra. Filter by city or search by name & clinic.
               </p>
             </div>
             <div className="flex gap-3">
