@@ -111,6 +111,7 @@ function CentresPage() {
         {/* Map */}
         <div className="rounded-3xl overflow-hidden border border-border shadow-soft mb-8 bg-card">
           <div className="aspect-[16/9] w-full">
+            {/* REPLACE_WITH_EMBED_URL — Google Maps embed of all Health OK centres with pins */}
             <iframe
               title="Health OK Centres map"
               src={mapSrc}
