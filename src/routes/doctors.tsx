@@ -75,8 +75,9 @@ function DoctorsPage() {
 
   const handleContact = (doc: Doctor) => {
     const msg = encodeURIComponent(
-      `Hi, I'd like to book an appointment with ${doc.name} at ${doc.address || doc.city}. Please assist.`,
+      `Hi, I'd like to book an appointment with ${doc.name} at ${doc.clinic || doc.address || doc.city}. Please assist.`,
     );
+    // DUAL_NOTIFY — also send to doctor number (${doc.mobile}) for backend implementation later
     window.open(`https://wa.me/91${COMMON.replace(/[^0-9]/g, "").slice(-10)}?text=${msg}`, "_blank");
   };
 
