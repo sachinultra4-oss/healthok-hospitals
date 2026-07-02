@@ -6,10 +6,8 @@ import {
   MapPin,
   GraduationCap,
   CheckCircle,
-  
   MessageCircle,
   ArrowLeft,
-  Stethoscope,
 } from "lucide-react";
 import { getAllDoctors, type Doctor } from "@/data/centers";
 import logo from "@/assets/logo.png.asset.json";
