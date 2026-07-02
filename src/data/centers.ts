@@ -10,6 +10,9 @@ export interface Doctor {
   tahsil?: string;
   village?: string;
   image?: string;
+  specialization?: string;
+  clinic?: string;
+  tag?: string;
 }
 
 export interface Center {
