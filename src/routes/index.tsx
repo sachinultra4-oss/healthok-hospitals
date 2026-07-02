@@ -564,15 +564,15 @@ function FAQ() {
       q: "How do I book an appointment?",
       a: (
         <div className="space-y-3">
-          <p>We encourage you to find a suitable Health OK Center near you. You can book an appointment before visiting, or you can directly visit that center. We always encourage direct consultation over online consultation.</p>
-          <p>Even so, if you'd like an online consultation, we're happy to help. You can request an online consultation with our expert doctors:</p>
+          <p>We encourage you to find a suitable Health OK Center near you. You can book an appointment before visiting or directly walk into the center. We always encourage direct consultation over online consultation.</p>
+          <p>If you still prefer an online consultation, you can:</p>
           <ol className="list-decimal ml-5 space-y-1">
-            <li>Request online consultation</li>
+            <li>Request an online consultation</li>
             <li>Proceed with payment</li>
-            <li>You'll receive consultation details after payment</li>
+            <li>You will receive consultation details after payment</li>
             <li>Make sure you have a good network connection</li>
-            <li>For any appointment-related issue, you can call us on 7030666321</li>
           </ol>
+          <p>For any appointment-related issues, call: <a href="tel:+917030666321" className="text-primary font-semibold">7030666321</a>.</p>
         </div>
       ),
     },
