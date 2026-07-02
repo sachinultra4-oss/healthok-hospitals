@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import {
   Stethoscope, MapPin, Phone, MessageCircle, ShieldCheck, Clock, HeartPulse,
@@ -26,8 +26,8 @@ export const Route = createFileRoute("/")({
 const CARE_NUMBER = "7030666321";
 const WHATSAPP = `https://wa.me/91${CARE_NUMBER}`;
 const PHONE = `tel:+91${CARE_NUMBER}`;
-// TODO: replace with official Health OK WhatsApp Community link
-const WHATSAPP_COMMUNITY = "PASTE_HEALTH_OK_WHATSAPP_COMMUNITY_LINK_HERE";
+// REPLACE_WITH_WHATSAPP_COMMUNITY_LINK
+const WHATSAPP_COMMUNITY = "https://chat.whatsapp.com/REPLACE_WITH_HEALTH_OK_COMMUNITY_INVITE";
 const waForDoctor = (name: string, clinic?: string) =>
   `${WHATSAPP}?text=${encodeURIComponent(`Hi, I'd like to book an appointment with ${name}${clinic ? ` at ${clinic}` : ""}. Please assist.`)}`;
 
@@ -78,7 +78,11 @@ function Header() {
         </a>
         <nav className="hidden md:flex items-center gap-8">
           {links.map(l => (
-            <a key={l.href} href={l.href} className="text-sm font-medium text-foreground/80 hover:text-primary transition">{l.label}</a>
+            l.href.startsWith("/") ? (
+              <Link key={l.href} to={l.href} className="text-sm font-medium text-foreground/80 hover:text-primary transition">{l.label}</Link>
+            ) : (
+              <a key={l.href} href={l.href} className="text-sm font-medium text-foreground/80 hover:text-primary transition">{l.label}</a>
+            )
           ))}
         </nav>
         <div className="flex items-center gap-2">
@@ -499,20 +503,38 @@ function ExploreCTA() {
   const cards = [
     { icon: MapPin, t: "Explore all Health OK Centres", d: "Find locations, centre doctors, maps and WhatsApp appointment booking.", cta: "View centres", href: "/centres" },
     { icon: Search, t: "Search the Doctors Network", d: "Browse every registered doctor by name, qualification, clinic or city.", cta: "Find a doctor", href: "/doctors" },
-  ];
+  ] as const;
   return (
     <section id="centres" className="py-16 md:py-20 bg-muted/40">
       <div className="container-px mx-auto max-w-7xl grid md:grid-cols-2 gap-5">
         {cards.map(({ icon: Icon, t, d, cta, href }) => (
-          <div key={t} className="rounded-3xl bg-card p-8 border border-border shadow-soft flex flex-col md:flex-row md:items-center gap-5">
+          <Link
+            key={t}
+            to={href}
+            className="rounded-3xl bg-card p-8 border border-border shadow-soft flex flex-col md:flex-row md:items-center gap-5 hover:shadow-card transition"
+          >
             <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center"><Icon className="w-6 h-6" /></div>
             <div className="flex-1">
               <h3 className="text-xl font-bold">{t}</h3>
               <p className="mt-1 text-sm text-muted-foreground">{d}</p>
             </div>
-            <a href={href} className="inline-flex items-center gap-2 text-primary font-semibold">{cta} <ArrowRight className="w-4 h-4" /></a>
-          </div>
+            <span className="inline-flex items-center gap-2 text-primary font-semibold">{cta} <ArrowRight className="w-4 h-4" /></span>
+          </Link>
         ))}
+        {/* Centres map preview */}
+        <div className="md:col-span-2 rounded-3xl overflow-hidden border border-border shadow-soft bg-card">
+          <div className="aspect-[16/8] w-full">
+            {/* REPLACE_WITH_EMBED_URL — Google Maps embed of all Health OK centres */}
+            <iframe
+              title="Health OK Centres map"
+              src="https://www.google.com/maps?q=Maharashtra+India&output=embed&z=7"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="w-full h-full border-0"
+              allowFullScreen
+            />
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -564,15 +586,15 @@ function FAQ() {
       q: "How do I book an appointment?",
       a: (
         <div className="space-y-3">
-          <p>We encourage you to find a suitable Health OK Center near you. You can book an appointment before visiting, or you can directly visit that center. We always encourage direct consultation over online consultation.</p>
-          <p>Even so, if you'd like an online consultation, we're happy to help. You can request an online consultation with our expert doctors:</p>
+          <p>We encourage you to find a suitable Health OK Center near you. You can book an appointment before visiting or directly walk into the center. We always encourage direct consultation over online consultation.</p>
+          <p>If you still prefer an online consultation, you can:</p>
           <ol className="list-decimal ml-5 space-y-1">
-            <li>Request online consultation</li>
+            <li>Request an online consultation</li>
             <li>Proceed with payment</li>
-            <li>You'll receive consultation details after payment</li>
+            <li>You will receive consultation details after payment</li>
             <li>Make sure you have a good network connection</li>
-            <li>For any appointment-related issue, you can call us on 7030666321</li>
           </ol>
+          <p>For any appointment-related issues, call: <a href="tel:+917030666321" className="text-primary font-semibold">7030666321</a>.</p>
         </div>
       ),
     },

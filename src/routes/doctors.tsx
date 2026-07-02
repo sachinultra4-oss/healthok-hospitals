@@ -6,10 +6,8 @@ import {
   MapPin,
   GraduationCap,
   CheckCircle,
-  
   MessageCircle,
   ArrowLeft,
-  Stethoscope,
 } from "lucide-react";
 import { getAllDoctors, type Doctor } from "@/data/centers";
 import logo from "@/assets/logo.png.asset.json";
@@ -75,8 +73,9 @@ function DoctorsPage() {
 
   const handleContact = (doc: Doctor) => {
     const msg = encodeURIComponent(
-      `Hi, I'd like to book an appointment with ${doc.name} at ${doc.address || doc.city}. Please assist.`,
+      `Hi, I'd like to book an appointment with ${doc.name} at ${doc.clinic || doc.address || doc.city}. Please assist.`,
     );
+    // DUAL_NOTIFY — also send to doctor number (${doc.mobile}) for backend implementation later
     window.open(`https://wa.me/91${COMMON.replace(/[^0-9]/g, "").slice(-10)}?text=${msg}`, "_blank");
   };
 
@@ -147,8 +146,8 @@ function DoctorsPage() {
 
       {/* Filters */}
       <section className="container-px mx-auto max-w-7xl px-4 py-8">
-        <div className="grid md:grid-cols-2 gap-3 mb-6">
-          <div className="relative">
+        <div className="mb-4">
+          <div className="relative max-w-xl">
             <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <input
               type="text"
@@ -158,40 +157,31 @@ function DoctorsPage() {
               className="w-full pl-10 pr-3 py-2.5 rounded-lg border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
-          <select
-            value={cityFilter}
-            onChange={(e) => setCityFilter(e.target.value)}
-            className="px-3 py-2.5 rounded-lg border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-          >
-            <option value="all">All Cities</option>
-            <optgroup label="Nashik District">
-              {cities.filter((c) => ["Nashik", "Malegaon", "Nampur"].includes(c)).map((c) => (
-                <option key={c} value={c}>{c}</option>
-              ))}
-            </optgroup>
-            <optgroup label="Jalgaon District">
-              {cities.filter((c) => ["Jalgaon", "Chalisgaon", "Amalner", "Parola"].includes(c)).map((c) => (
-                <option key={c} value={c}>{c}</option>
-              ))}
-            </optgroup>
-            <optgroup label="Dhule District">
-              {cities.filter((c) => ["Dhule", "Shirpur", "Dondaicha", "Sakri"].includes(c)).map((c) => (
-                <option key={c} value={c}>{c}</option>
-              ))}
-            </optgroup>
-            <optgroup label="Thane District">
-              {cities.filter((c) => ["Thane"].includes(c)).map((c) => (
-                <option key={c} value={c}>{c}</option>
-              ))}
-            </optgroup>
-            {cities.filter((c) => c !== "all" && !["Nashik","Malegaon","Nampur","Jalgaon","Chalisgaon","Amalner","Parola","Dhule","Shirpur","Dondaicha","Sakri","Thane"].includes(c)).length > 0 && (
-              <optgroup label="Other">
-                {cities.filter((c) => c !== "all" && !["Nashik","Malegaon","Nampur","Jalgaon","Chalisgaon","Amalner","Parola","Dhule","Shirpur","Dondaicha","Sakri","Thane"].includes(c)).map((c) => (
-                  <option key={c} value={c}>{c}</option>
-                ))}
-              </optgroup>
-            )}
-          </select>
+        </div>
+
+        {/* City chips */}
+        <div className="mb-6">
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Filter by city</p>
+          <div className="flex flex-wrap gap-2">
+            {cities.map((c) => {
+              const active = cityFilter === c;
+              const label = c === "all" ? "All Cities" : c;
+              return (
+                <button
+                  key={c}
+                  type="button"
+                  onClick={() => setCityFilter(c)}
+                  className={`px-4 py-1.5 rounded-full text-sm font-medium border transition ${
+                    active
+                      ? "bg-primary text-primary-foreground border-primary shadow-sm"
+                      : "bg-card text-foreground/80 border-border hover:border-primary hover:text-primary"
+                  }`}
+                >
+                  {label}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         <p className="text-sm text-muted-foreground mb-4">
@@ -218,15 +208,26 @@ function DoctorsPage() {
                   </span>
                 </div>
                 <h3 className="font-bold text-base leading-tight">{doc.name}</h3>
+                {doc.tag && (
+                  <p className="mt-1 text-[10px] font-bold uppercase tracking-wider text-secondary-foreground bg-secondary inline-block px-2 py-0.5 rounded-full">
+                    {doc.tag}
+                  </p>
+                )}
                 {doc.qualification && (
                   <p className="mt-1 text-xs text-primary font-medium inline-flex items-center gap-1">
                     <GraduationCap className="w-3.5 h-3.5" /> {doc.qualification}
                   </p>
                 )}
+                {doc.specialization && (
+                  <p className="mt-0.5 text-xs text-foreground/70">{doc.specialization}</p>
+                )}
                 {doc.registration && (
                   <p className="mt-0.5 text-xs text-muted-foreground">Reg: {doc.registration}</p>
                 )}
-                <p className="mt-3 text-sm text-foreground/80 flex gap-1.5 leading-snug">
+                {doc.clinic && (
+                  <p className="mt-2 text-sm font-semibold text-foreground">{doc.clinic}</p>
+                )}
+                <p className="mt-1 text-sm text-foreground/80 flex gap-1.5 leading-snug">
                   <MapPin className="w-4 h-4 shrink-0 mt-0.5 text-muted-foreground" />
                   <span>{doc.address}</span>
                 </p>
