@@ -499,20 +499,38 @@ function ExploreCTA() {
   const cards = [
     { icon: MapPin, t: "Explore all Health OK Centres", d: "Find locations, centre doctors, maps and WhatsApp appointment booking.", cta: "View centres", href: "/centres" },
     { icon: Search, t: "Search the Doctors Network", d: "Browse every registered doctor by name, qualification, clinic or city.", cta: "Find a doctor", href: "/doctors" },
-  ];
+  ] as const;
   return (
     <section id="centres" className="py-16 md:py-20 bg-muted/40">
       <div className="container-px mx-auto max-w-7xl grid md:grid-cols-2 gap-5">
         {cards.map(({ icon: Icon, t, d, cta, href }) => (
-          <div key={t} className="rounded-3xl bg-card p-8 border border-border shadow-soft flex flex-col md:flex-row md:items-center gap-5">
+          <Link
+            key={t}
+            to={href}
+            className="rounded-3xl bg-card p-8 border border-border shadow-soft flex flex-col md:flex-row md:items-center gap-5 hover:shadow-card transition"
+          >
             <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center"><Icon className="w-6 h-6" /></div>
             <div className="flex-1">
               <h3 className="text-xl font-bold">{t}</h3>
               <p className="mt-1 text-sm text-muted-foreground">{d}</p>
             </div>
-            <a href={href} className="inline-flex items-center gap-2 text-primary font-semibold">{cta} <ArrowRight className="w-4 h-4" /></a>
-          </div>
+            <span className="inline-flex items-center gap-2 text-primary font-semibold">{cta} <ArrowRight className="w-4 h-4" /></span>
+          </Link>
         ))}
+        {/* Centres map preview */}
+        <div className="md:col-span-2 rounded-3xl overflow-hidden border border-border shadow-soft bg-card">
+          <div className="aspect-[16/8] w-full">
+            {/* REPLACE_WITH_EMBED_URL — Google Maps embed of all Health OK centres */}
+            <iframe
+              title="Health OK Centres map"
+              src="https://www.google.com/maps?q=Maharashtra+India&output=embed&z=7"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="w-full h-full border-0"
+              allowFullScreen
+            />
+          </div>
+        </div>
       </div>
     </section>
   );
