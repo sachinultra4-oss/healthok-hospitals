@@ -210,15 +210,26 @@ function DoctorsPage() {
                   </span>
                 </div>
                 <h3 className="font-bold text-base leading-tight">{doc.name}</h3>
+                {doc.tag && (
+                  <p className="mt-1 text-[10px] font-bold uppercase tracking-wider text-secondary-foreground bg-secondary inline-block px-2 py-0.5 rounded-full">
+                    {doc.tag}
+                  </p>
+                )}
                 {doc.qualification && (
                   <p className="mt-1 text-xs text-primary font-medium inline-flex items-center gap-1">
                     <GraduationCap className="w-3.5 h-3.5" /> {doc.qualification}
                   </p>
                 )}
+                {doc.specialization && (
+                  <p className="mt-0.5 text-xs text-foreground/70">{doc.specialization}</p>
+                )}
                 {doc.registration && (
                   <p className="mt-0.5 text-xs text-muted-foreground">Reg: {doc.registration}</p>
                 )}
-                <p className="mt-3 text-sm text-foreground/80 flex gap-1.5 leading-snug">
+                {doc.clinic && (
+                  <p className="mt-2 text-sm font-semibold text-foreground">{doc.clinic}</p>
+                )}
+                <p className="mt-1 text-sm text-foreground/80 flex gap-1.5 leading-snug">
                   <MapPin className="w-4 h-4 shrink-0 mt-0.5 text-muted-foreground" />
                   <span>{doc.address}</span>
                 </p>
