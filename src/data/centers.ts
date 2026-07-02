@@ -189,13 +189,44 @@ const networkDoctors: Doctor[] = [
 ];
 
 // ============================================================
-// THANE DOCTORS
+// HEAD OFFICE DOCTORS (shown first)
 // ============================================================
-const thaneDoctors: Doctor[] = [
-  { name: "Dr. Bhupesh Patil", qualification: "BAMS", address: "Health OK Clinic, Thane", mobile: COMMON_NUMBER, active: true, city: "Thane", district: "Thane", image: "/__l5e/assets-v1/202b330e-b24b-411b-906e-68e79ea7b7da/Dr Bhupesh Patil.jpg" }
+const headOfficeDoctors: Doctor[] = [
+  {
+    name: "Dr. Bhupesh P. Patil",
+    qualification: "MBBS, FCPS (Medicine), AFIH",
+    specialization: "Physician & Intensivist (ICU)",
+    clinic: "Shree Ram Hospital",
+    address: "68, Saraswati Colony, Datta Mandir Chauk, Deopur, Dhule",
+    mobile: "+917588517991",
+    active: true,
+    city: "Dhule",
+    district: "Dhule",
+    tag: "Head Office — Health OK Hospitals",
+    image: "/__l5e/assets-v1/6dea5c28-d323-41bf-bac5-f44f81336b8c/Dr Bhupesh Patil.jpg",
+  },
+  {
+    name: "Dr. Shital Patil",
+    qualification: "MBBS, DGO",
+    specialization: "Obstetrician & Gynaecologist",
+    clinic: "Shree Ram Hospital",
+    address: "68, Saraswati Colony, Datta Mandir Chauk, Deopur, Dhule",
+    mobile: "+917588517990",
+    active: true,
+    city: "Dhule",
+    district: "Dhule",
+    tag: "Head Office — Health OK Hospitals",
+    image: "",
+  },
 ];
 
+// ============================================================
+// THANE DOCTORS
+// ============================================================
+const thaneDoctors: Doctor[] = [];
+
 export const getAllDoctors = (): Doctor[] => [
+  ...headOfficeDoctors,
   ...sakriDoctors,
   ...nampurDoctors,
   ...shirpurDoctors,
