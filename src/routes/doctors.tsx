@@ -148,8 +148,8 @@ function DoctorsPage() {
 
       {/* Filters */}
       <section className="container-px mx-auto max-w-7xl px-4 py-8">
-        <div className="grid md:grid-cols-2 gap-3 mb-6">
-          <div className="relative">
+        <div className="mb-4">
+          <div className="relative max-w-xl">
             <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <input
               type="text"
@@ -159,40 +159,31 @@ function DoctorsPage() {
               className="w-full pl-10 pr-3 py-2.5 rounded-lg border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
-          <select
-            value={cityFilter}
-            onChange={(e) => setCityFilter(e.target.value)}
-            className="px-3 py-2.5 rounded-lg border border-border bg-card text-sm focus:outline-none focus:ring-2 focus:ring-primary"
-          >
-            <option value="all">All Cities</option>
-            <optgroup label="Nashik District">
-              {cities.filter((c) => ["Nashik", "Malegaon", "Nampur"].includes(c)).map((c) => (
-                <option key={c} value={c}>{c}</option>
-              ))}
-            </optgroup>
-            <optgroup label="Jalgaon District">
-              {cities.filter((c) => ["Jalgaon", "Chalisgaon", "Amalner", "Parola"].includes(c)).map((c) => (
-                <option key={c} value={c}>{c}</option>
-              ))}
-            </optgroup>
-            <optgroup label="Dhule District">
-              {cities.filter((c) => ["Dhule", "Shirpur", "Dondaicha", "Sakri"].includes(c)).map((c) => (
-                <option key={c} value={c}>{c}</option>
-              ))}
-            </optgroup>
-            <optgroup label="Thane District">
-              {cities.filter((c) => ["Thane"].includes(c)).map((c) => (
-                <option key={c} value={c}>{c}</option>
-              ))}
-            </optgroup>
-            {cities.filter((c) => c !== "all" && !["Nashik","Malegaon","Nampur","Jalgaon","Chalisgaon","Amalner","Parola","Dhule","Shirpur","Dondaicha","Sakri","Thane"].includes(c)).length > 0 && (
-              <optgroup label="Other">
-                {cities.filter((c) => c !== "all" && !["Nashik","Malegaon","Nampur","Jalgaon","Chalisgaon","Amalner","Parola","Dhule","Shirpur","Dondaicha","Sakri","Thane"].includes(c)).map((c) => (
-                  <option key={c} value={c}>{c}</option>
-                ))}
-              </optgroup>
-            )}
-          </select>
+        </div>
+
+        {/* City chips */}
+        <div className="mb-6">
+          <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">Filter by city</p>
+          <div className="flex flex-wrap gap-2">
+            {cities.map((c) => {
+              const active = cityFilter === c;
+              const label = c === "all" ? "All Cities" : c;
+              return (
+                <button
+                  key={c}
+                  type="button"
+                  onClick={() => setCityFilter(c)}
+                  className={`px-4 py-1.5 rounded-full text-sm font-medium border transition ${
+                    active
+                      ? "bg-primary text-primary-foreground border-primary shadow-sm"
+                      : "bg-card text-foreground/80 border-border hover:border-primary hover:text-primary"
+                  }`}
+                >
+                  {label}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         <p className="text-sm text-muted-foreground mb-4">
