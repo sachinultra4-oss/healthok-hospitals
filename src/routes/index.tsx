@@ -78,7 +78,11 @@ function Header() {
         </a>
         <nav className="hidden md:flex items-center gap-8">
           {links.map(l => (
-            <a key={l.href} href={l.href} className="text-sm font-medium text-foreground/80 hover:text-primary transition">{l.label}</a>
+            l.href.startsWith("/") ? (
+              <Link key={l.href} to={l.href} className="text-sm font-medium text-foreground/80 hover:text-primary transition">{l.label}</Link>
+            ) : (
+              <a key={l.href} href={l.href} className="text-sm font-medium text-foreground/80 hover:text-primary transition">{l.label}</a>
+            )
           ))}
         </nav>
         <div className="flex items-center gap-2">
