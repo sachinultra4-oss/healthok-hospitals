@@ -28,8 +28,18 @@ const WHATSAPP = `https://wa.me/91${CARE_NUMBER}`;
 const PHONE = `tel:+91${CARE_NUMBER}`;
 // REPLACE_WITH_WHATSAPP_COMMUNITY_LINK
 const WHATSAPP_COMMUNITY = "https://chat.whatsapp.com/REPLACE_WITH_HEALTH_OK_COMMUNITY_INVITE";
-const waForDoctor = (name: string, clinic?: string) =>
-  `${WHATSAPP}?text=${encodeURIComponent(`Hi, I'd like to book an appointment with ${name}${clinic ? ` at ${clinic}` : ""}. Please assist.`)}`;
+const waMsg = (msg: string) => `${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+const WA = {
+  patientCare: waMsg("Hello Health OK Hospitals, I would like to consult a specialist. Please help me find the right doctor."),
+  callback: waMsg("Hello Health OK Hospitals! I would like to book a callback. Please contact me at your earliest convenience."),
+  generic: waMsg("Hello, I need assistance from Health OK Hospitals."),
+  doctorNetwork: waMsg("Hello Health OK Hospitals, I am a doctor and would like to know more about joining the Health OK Doctor Network."),
+};
+// DUAL_NOTIFY: also send to individual doctor number — implement when backend is ready.
+const waForDoctor = (_name: string, _clinic?: string, city?: string) => {
+  const body = `Health OK Appointment Request\nName: [patient will fill]\nPreferred Centre: ${city ?? "[CITY]"}\nMessage: I'd like to book an appointment. Please share available slots.`;
+  return `${WHATSAPP}?text=${encodeURIComponent(body)}`;
+};
 
 function Index() {
   return (
