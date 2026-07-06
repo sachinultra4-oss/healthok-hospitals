@@ -578,7 +578,7 @@ function Resources() {
               </div>
               <h3 className="mt-4 text-lg font-bold leading-snug">{p.t}</h3>
               <p className="mt-2 text-sm text-muted-foreground flex-1">{p.d}</p>
-              <a href={WHATSAPP} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 text-primary font-semibold text-sm">Read Full Article <ArrowRight className="w-4 h-4" /></a>
+              <a href={WA.generic} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 text-primary font-semibold text-sm">Read Full Article <ArrowRight className="w-4 h-4" /></a>
             </article>
           ))}
         </div>
@@ -674,7 +674,7 @@ function Contact() {
                 <div key={t} className="flex items-center gap-4 rounded-2xl bg-card p-4 border border-border shadow-soft">{Inner}</div>
               );
             })}
-            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-2 rounded-full bg-success text-white px-5 py-3 font-semibold shadow-card">
+            <a href={WA.generic} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-2 rounded-full bg-success text-white px-5 py-3 font-semibold shadow-card">
               <MessageCircle className="w-4 h-4" /> Chat Instantly on WhatsApp
             </a>
           </div>
@@ -756,7 +756,7 @@ function Footer() {
           <p className="mt-4 text-sm text-white/70 max-w-md">
             Maharashtra's fastest-growing healthcare network — making trusted, transparent care accessible to every community.
           </p>
-          <a href={WHATSAPP} target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 rounded-full bg-success px-5 py-2.5 text-sm font-semibold">
+          <a href={WA.generic} target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 rounded-full bg-success px-5 py-2.5 text-sm font-semibold">
             <MessageCircle className="w-4 h-4" /> WhatsApp Care Channel
           </a>
         </div>
@@ -765,7 +765,7 @@ function Footer() {
           <ul className="mt-4 space-y-2 text-sm text-white/75">
             <li><a href="#about" className="hover:text-secondary">About Us</a></li>
             <li><a href="#doctors" className="hover:text-secondary">Our Doctors</a></li>
-            <li><a href={WHATSAPP} className="hover:text-secondary">Join as Doctor</a></li>
+            <li><a href={WA.doctorNetwork} className="hover:text-secondary">Join as Doctor</a></li>
             <li><a href="#contact" className="hover:text-secondary">Contact</a></li>
             <li><a href="/admin" className="hover:text-secondary">Admin Dashboard</a></li>
           </ul>
@@ -790,7 +790,7 @@ function Footer() {
 /* ---------------- Floating WhatsApp ---------------- */
 function FloatingWhatsApp() {
   return (
-    <a href={WHATSAPP} target="_blank" rel="noreferrer"
+    <a href={WA.generic} target="_blank" rel="noreferrer"
       className="fixed bottom-5 right-5 z-50 w-14 h-14 rounded-full bg-success text-white shadow-card flex items-center justify-center hover:scale-105 transition"
       aria-label="WhatsApp">
       <MessageCircle className="w-6 h-6" />
