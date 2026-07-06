@@ -217,7 +217,7 @@ function DualEngagement() {
     {
       tag: "FOR DOCTORS",
       title: "Be More Than Just a Practitioner",
-      points: ["Supportive network of qualified doctors", "Clinical training & workshops", "Instant specialist access", "Practice flow enhancement", "Zero-cost brand visibility"],
+      points: ["Supportive network of qualified doctors", "Clinical training & workshops", "24*7 Consultant Backup", "Practice flow enhancement", "Brand visibility"],
       cta: "Explore Doctor Network",
       accent: "secondary",
     },
