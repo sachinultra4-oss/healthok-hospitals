@@ -655,7 +655,7 @@ function Contact() {
             {[
               { i: Calendar, t: "Appointment Booking", v: "+91 7030 666 321", href: PHONE },
               { i: Phone, t: "Customer Care", v: "+91 7030 666 321", href: PHONE },
-              { i: MessageCircle, t: "Online Consultation", v: "+91 7030 666 321", href: WHATSAPP },
+              { i: MessageCircle, t: "Online Consultation", v: "+91 7030 666 321", href: WA.patientCare },
               { i: Mail, t: "Email", v: "care@healthokhospitals.com\n\n", href: "mailto:care@healthokhospitals.com" },
               { i: Clock, t: "Office Hours", v: "Mon–Sat, 9:00 AM – 6:00 PM IST" },
             ].map(({ i: Icon, t, v, href }) => {
