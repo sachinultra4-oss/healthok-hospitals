@@ -256,8 +256,8 @@ function PatientTrust() {
   const items = [
     { i: Award, t: "Expert-Trained Doctors", d: "Local MBBS, BAMS, BHMS mentored by senior specialists." },
     { i: Wallet, t: "Affordable & Transparent", d: "No hidden charges or unnecessary tests — clear pricing." },
-    { i: Wifi, t: "Online + Offline Care", d: "Visit clinics or get tele-care from your home." },
-    { i: HeartPulse, t: "Personalized Care Plans", d: "Tailored for chronic & acute conditions of your family." },
+    { i: Wifi, t: "Online + Offline Care", d: "International quality healthcare available locally — visit clinics or get tele-care from your home." },
+    { i: HeartPulse, t: "Personalized Care Plans", d: "Tailored care plans for every member of your family — from kids to adults, for chronic and acute conditions." },
     { i: Stethoscope, t: "Standard Health Services", d: "ECG, diagnostics, and clinical emergency support." },
     { i: MessageCircle, t: "WhatsApp Health Support", d: "Free guidance, follow-ups, and wellness content." },
   ];
