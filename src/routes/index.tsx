@@ -99,7 +99,7 @@ function Header() {
           <a href={PHONE} className="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium text-foreground/80 hover:text-primary">
             <Phone className="w-4 h-4" /> 7030666321
           </a>
-          <a href={WHATSAPP} target="_blank" rel="noreferrer"
+          <a href={WA.callback} target="_blank" rel="noreferrer"
             className="inline-flex items-center gap-1.5 rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold hover:opacity-90 transition">
             <MessageCircle className="w-4 h-4" /> Book Callback
           </a>
