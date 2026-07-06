@@ -137,14 +137,17 @@ function Hero() {
           <h1 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05]">
             Standard, Ethical & Efficient Healthcare, <span className="text-secondary">Close to You.</span>
           </h1>
+          <p className="mt-3 text-secondary text-sm md:text-base font-semibold italic">
+            Trusted Healthcare Network For India... By Indians...
+          </p>
           <p className="mt-5 text-base md:text-lg text-white/85 max-w-xl">
-            Delivering transparent, specialized medical expertise to rural and semi-urban communities — backed by 150+ centres, zero hidden fees, and 24/7 consultant backup.
+            Delivering transparent, specialized medical expertise to rural and semi-urban communities — 150+ centres, zero hidden fees, and 24/7 consultant backup.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-secondary text-secondary-foreground px-5 py-3 font-semibold hover:opacity-90 transition shadow-card">
+            <a href={WA.callback} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-secondary text-secondary-foreground px-5 py-3 font-semibold hover:opacity-90 transition shadow-card">
               <Calendar className="w-4 h-4" /> Book Appointment · 7030666321
             </a>
-            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-white/10 text-white ring-1 ring-white/30 backdrop-blur px-5 py-3 font-semibold hover:bg-white/20 transition">
+            <a href={WA.patientCare} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-white/10 text-white ring-1 ring-white/30 backdrop-blur px-5 py-3 font-semibold hover:bg-white/20 transition">
               <MessageCircle className="w-4 h-4" /> Consult on WhatsApp
             </a>
           </div>
