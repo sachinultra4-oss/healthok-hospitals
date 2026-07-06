@@ -515,7 +515,7 @@ function FeaturedDoctors() {
 /* ---------------- Explore CTA ---------------- */
 function ExploreCTA() {
   const cards = [
-    { icon: MapPin, t: "Explore all Health OK Centres", d: "Find locations, centre doctors, maps and WhatsApp appointment booking.", cta: "View centres", href: "/centres" },
+    { icon: MapPin, t: "Explore all Health OK Centres", d: "Find locations, doctors, and appointment booking — all on our unified doctors page.", cta: "View centres", href: "/doctors" },
     { icon: Search, t: "Search the Doctors Network", d: "Browse every registered doctor by name, qualification, clinic or city.", cta: "Find a doctor", href: "/doctors" },
   ] as const;
   return (
