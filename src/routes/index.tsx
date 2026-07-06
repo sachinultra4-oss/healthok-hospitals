@@ -232,7 +232,7 @@ function DualEngagement() {
         <div className="mt-12 grid md:grid-cols-2 gap-6">
           {cards.map(c => (
             <div key={c.tag} className="group relative rounded-3xl bg-card p-8 shadow-card border border-border hover:-translate-y-1 transition">
-              <span className={`inline-block text-xs font-bold tracking-widest px-3 py-1 rounded-full ${c.accent === "primary" ? "bg-primary/10 text-primary" : "bg-secondary text-secondary-foreground"}`}>{c.tag}</span>
+              <span className={`inline-block text-xs font-bold tracking-widest px-3 py-1 rounded-full ${c.accent === "primary" ? "bg-secondary text-secondary-foreground" : "bg-secondary text-secondary-foreground"}`}>{c.tag}</span>
               <h3 className="mt-4 text-2xl md:text-3xl font-extrabold">{c.title}</h3>
               <ul className="mt-6 space-y-3">
                 {c.points.map(p => (
@@ -242,7 +242,7 @@ function DualEngagement() {
                   </li>
                 ))}
               </ul>
-              <a href={WHATSAPP} target="_blank" rel="noreferrer" className="mt-7 inline-flex items-center gap-2 font-semibold text-primary hover:gap-3 transition-all">{c.cta} <ArrowRight className="w-4 h-4" /></a>
+              <a href={c.accent === "primary" ? WA.patientCare : WA.doctorNetwork} target="_blank" rel="noreferrer" className="mt-7 inline-flex items-center gap-2 font-semibold text-primary hover:gap-3 transition-all">{c.cta} <ArrowRight className="w-4 h-4" /></a>
             </div>
           ))}
         </div>
