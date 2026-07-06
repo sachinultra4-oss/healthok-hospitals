@@ -286,7 +286,7 @@ function PatientTrust() {
             <h3 className="mt-2 text-2xl md:text-3xl font-extrabold">Round-the-clock access to senior consultants</h3>
             <p className="mt-2 text-white/85 text-sm md:text-base max-w-2xl">For emergencies and second opinions — anytime, any day. Expanding network — available across Maharashtra and growing rapidly.</p>
           </div>
-          <a href={WHATSAPP} target="_blank" rel="noreferrer" className="shrink-0 inline-flex items-center gap-2 bg-secondary text-secondary-foreground rounded-full px-5 py-3 font-semibold">
+          <a href={WA.patientCare} target="_blank" rel="noreferrer" className="shrink-0 inline-flex items-center gap-2 bg-secondary text-secondary-foreground rounded-full px-5 py-3 font-semibold">
             <MessageCircle className="w-4 h-4" /> Talk to a Consultant
           </a>
         </div>
