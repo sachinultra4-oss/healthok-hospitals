@@ -28,8 +28,18 @@ const WHATSAPP = `https://wa.me/91${CARE_NUMBER}`;
 const PHONE = `tel:+91${CARE_NUMBER}`;
 // REPLACE_WITH_WHATSAPP_COMMUNITY_LINK
 const WHATSAPP_COMMUNITY = "https://chat.whatsapp.com/REPLACE_WITH_HEALTH_OK_COMMUNITY_INVITE";
-const waForDoctor = (name: string, clinic?: string) =>
-  `${WHATSAPP}?text=${encodeURIComponent(`Hi, I'd like to book an appointment with ${name}${clinic ? ` at ${clinic}` : ""}. Please assist.`)}`;
+const waMsg = (msg: string) => `${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+const WA = {
+  patientCare: waMsg("Hello Health OK Hospitals, I would like to consult a specialist. Please help me find the right doctor."),
+  callback: waMsg("Hello Health OK Hospitals! I would like to book a callback. Please contact me at your earliest convenience."),
+  generic: waMsg("Hello, I need assistance from Health OK Hospitals."),
+  doctorNetwork: waMsg("Hello Health OK Hospitals, I am a doctor and would like to know more about joining the Health OK Doctor Network."),
+};
+// DUAL_NOTIFY: also send to individual doctor number — implement when backend is ready.
+const waForDoctor = (_name: string, _clinic?: string, city?: string) => {
+  const body = `Health OK Appointment Request\nName: [patient will fill]\nPreferred Centre: ${city ?? "[CITY]"}\nMessage: I'd like to book an appointment. Please share available slots.`;
+  return `${WHATSAPP}?text=${encodeURIComponent(body)}`;
+};
 
 function Index() {
   return (
@@ -89,7 +99,7 @@ function Header() {
           <a href={PHONE} className="hidden sm:inline-flex items-center gap-1.5 text-sm font-medium text-foreground/80 hover:text-primary">
             <Phone className="w-4 h-4" /> 7030666321
           </a>
-          <a href={WHATSAPP} target="_blank" rel="noreferrer"
+          <a href={WA.callback} target="_blank" rel="noreferrer"
             className="inline-flex items-center gap-1.5 rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold hover:opacity-90 transition">
             <MessageCircle className="w-4 h-4" /> Book Callback
           </a>
@@ -127,14 +137,17 @@ function Hero() {
           <h1 className="mt-5 text-4xl sm:text-5xl md:text-6xl font-extrabold leading-[1.05]">
             Standard, Ethical & Efficient Healthcare, <span className="text-secondary">Close to You.</span>
           </h1>
+          <p className="mt-3 text-secondary text-sm md:text-base font-semibold italic">
+            Trusted Healthcare Network For India... By Indians...
+          </p>
           <p className="mt-5 text-base md:text-lg text-white/85 max-w-xl">
-            Delivering transparent, specialized medical expertise to rural and semi-urban communities — backed by 150+ centres, zero hidden fees, and 24/7 consultant backup.
+            Delivering transparent, specialized medical expertise to rural and semi-urban communities — 150+ centres, zero hidden fees, and 24/7 consultant backup.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
-            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-secondary text-secondary-foreground px-5 py-3 font-semibold hover:opacity-90 transition shadow-card">
+            <a href={WA.callback} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-secondary text-secondary-foreground px-5 py-3 font-semibold hover:opacity-90 transition shadow-card">
               <Calendar className="w-4 h-4" /> Book Appointment · 7030666321
             </a>
-            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-white/10 text-white ring-1 ring-white/30 backdrop-blur px-5 py-3 font-semibold hover:bg-white/20 transition">
+            <a href={WA.patientCare} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-white/10 text-white ring-1 ring-white/30 backdrop-blur px-5 py-3 font-semibold hover:bg-white/20 transition">
               <MessageCircle className="w-4 h-4" /> Consult on WhatsApp
             </a>
           </div>
@@ -204,7 +217,7 @@ function DualEngagement() {
     {
       tag: "FOR DOCTORS",
       title: "Be More Than Just a Practitioner",
-      points: ["Supportive network of qualified doctors", "Clinical training & workshops", "Instant specialist access", "Practice flow enhancement", "Zero-cost brand visibility"],
+      points: ["Supportive network of qualified doctors", "Clinical training & workshops", "24*7 Consultant Backup", "Practice flow enhancement", "Brand visibility"],
       cta: "Explore Doctor Network",
       accent: "secondary",
     },
@@ -219,7 +232,7 @@ function DualEngagement() {
         <div className="mt-12 grid md:grid-cols-2 gap-6">
           {cards.map(c => (
             <div key={c.tag} className="group relative rounded-3xl bg-card p-8 shadow-card border border-border hover:-translate-y-1 transition">
-              <span className={`inline-block text-xs font-bold tracking-widest px-3 py-1 rounded-full ${c.accent === "primary" ? "bg-primary/10 text-primary" : "bg-secondary text-secondary-foreground"}`}>{c.tag}</span>
+              <span className={`inline-block text-xs font-bold tracking-widest px-3 py-1 rounded-full ${c.accent === "primary" ? "bg-secondary text-secondary-foreground" : "bg-secondary text-secondary-foreground"}`}>{c.tag}</span>
               <h3 className="mt-4 text-2xl md:text-3xl font-extrabold">{c.title}</h3>
               <ul className="mt-6 space-y-3">
                 {c.points.map(p => (
@@ -229,7 +242,7 @@ function DualEngagement() {
                   </li>
                 ))}
               </ul>
-              <a href={WHATSAPP} target="_blank" rel="noreferrer" className="mt-7 inline-flex items-center gap-2 font-semibold text-primary hover:gap-3 transition-all">{c.cta} <ArrowRight className="w-4 h-4" /></a>
+              <a href={c.accent === "primary" ? WA.patientCare : WA.doctorNetwork} target="_blank" rel="noreferrer" className="mt-7 inline-flex items-center gap-2 font-semibold text-primary hover:gap-3 transition-all">{c.cta} <ArrowRight className="w-4 h-4" /></a>
             </div>
           ))}
         </div>
@@ -243,8 +256,8 @@ function PatientTrust() {
   const items = [
     { i: Award, t: "Expert-Trained Doctors", d: "Local MBBS, BAMS, BHMS mentored by senior specialists." },
     { i: Wallet, t: "Affordable & Transparent", d: "No hidden charges or unnecessary tests — clear pricing." },
-    { i: Wifi, t: "Online + Offline Care", d: "Visit clinics or get tele-care from your home." },
-    { i: HeartPulse, t: "Personalized Care Plans", d: "Tailored for chronic & acute conditions of your family." },
+    { i: Wifi, t: "Online + Offline Care", d: "International quality healthcare available locally — visit clinics or get tele-care from your home." },
+    { i: HeartPulse, t: "Personalized Care Plans", d: "Tailored care plans for every member of your family — from kids to adults, for chronic and acute conditions." },
     { i: Stethoscope, t: "Standard Health Services", d: "ECG, diagnostics, and clinical emergency support." },
     { i: MessageCircle, t: "WhatsApp Health Support", d: "Free guidance, follow-ups, and wellness content." },
   ];
@@ -273,7 +286,7 @@ function PatientTrust() {
             <h3 className="mt-2 text-2xl md:text-3xl font-extrabold">Round-the-clock access to senior consultants</h3>
             <p className="mt-2 text-white/85 text-sm md:text-base max-w-2xl">For emergencies and second opinions — anytime, any day. Expanding network — available across Maharashtra and growing rapidly.</p>
           </div>
-          <a href={WHATSAPP} target="_blank" rel="noreferrer" className="shrink-0 inline-flex items-center gap-2 bg-secondary text-secondary-foreground rounded-full px-5 py-3 font-semibold">
+          <a href={WA.patientCare} target="_blank" rel="noreferrer" className="shrink-0 inline-flex items-center gap-2 bg-secondary text-secondary-foreground rounded-full px-5 py-3 font-semibold">
             <MessageCircle className="w-4 h-4" /> Talk to a Consultant
           </a>
         </div>
@@ -286,10 +299,11 @@ function PatientTrust() {
 function DoctorBenefits() {
   const items = [
     "Regular Training & Workshops",
-    "24/7 Consultant Backup",
+    "24*7 Consultant Backup",
     "Practice Enhancement Support",
     "Clinical Upgradation",
     "Online & Offline Ecosystem",
+    "Experience the Journey from GP to Consultant Level Practice with Health OK Hospitals — 100% Success Rate of Journey From GP to Consultant Level Practice",
     "Brand Trust & Visibility",
     "Dedicated Support Team",
   ];
@@ -299,8 +313,8 @@ function DoctorBenefits() {
         <div>
           <p className="text-sm font-semibold text-primary uppercase tracking-wider">For Doctors</p>
           <h2 className="mt-2 text-3xl md:text-4xl font-extrabold">Why 100 + Doctors Have Joined Health OK</h2>
-          <p className="mt-4 text-muted-foreground">Build a stronger practice with mentorship, specialist backup, and trusted brand visibility — all at zero cost to you.</p>
-          <a href={WHATSAPP} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-5 py-3 font-semibold shadow-card">
+          <p className="mt-4 text-muted-foreground">Build a stronger practice with mentorship, specialist backup, and trusted brand visibility.</p>
+          <a href={WA.doctorNetwork} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-5 py-3 font-semibold shadow-card">
             <Stethoscope className="w-4 h-4" /> Join Our Doctor Network
           </a>
         </div>
@@ -480,7 +494,7 @@ function FeaturedDoctors() {
                 {d.qualification && <p className="text-xs text-primary font-semibold truncate">{d.qualification}</p>}
                 <p className="mt-0.5 text-xs text-muted-foreground flex items-center gap-1"><MapPin className="w-3 h-3" /> {d.city}, {d.district}</p>
               </div>
-              <a href={waForDoctor(d.name, d.address)} target="_blank" rel="noreferrer" aria-label={`Book ${d.name}`} className="shrink-0 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
+              <a href={waForDoctor(d.name, d.address, d.city)} target="_blank" rel="noreferrer" aria-label={`Book ${d.name}`} className="shrink-0 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
                 <MessageCircle className="w-4 h-4" />
               </a>
             </div>
@@ -501,7 +515,7 @@ function FeaturedDoctors() {
 /* ---------------- Explore CTA ---------------- */
 function ExploreCTA() {
   const cards = [
-    { icon: MapPin, t: "Explore all Health OK Centres", d: "Find locations, centre doctors, maps and WhatsApp appointment booking.", cta: "View centres", href: "/centres" },
+    { icon: MapPin, t: "Explore all Health OK Centres", d: "Find locations, doctors, and appointment booking — all on our unified doctors page.", cta: "View centres", href: "/doctors" },
     { icon: Search, t: "Search the Doctors Network", d: "Browse every registered doctor by name, qualification, clinic or city.", cta: "Find a doctor", href: "/doctors" },
   ] as const;
   return (
@@ -564,7 +578,7 @@ function Resources() {
               </div>
               <h3 className="mt-4 text-lg font-bold leading-snug">{p.t}</h3>
               <p className="mt-2 text-sm text-muted-foreground flex-1">{p.d}</p>
-              <a href={WHATSAPP} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 text-primary font-semibold text-sm">Read Full Article <ArrowRight className="w-4 h-4" /></a>
+              <a href={WA.generic} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 text-primary font-semibold text-sm">Read Full Article <ArrowRight className="w-4 h-4" /></a>
             </article>
           ))}
         </div>
@@ -641,7 +655,7 @@ function Contact() {
             {[
               { i: Calendar, t: "Appointment Booking", v: "+91 7030 666 321", href: PHONE },
               { i: Phone, t: "Customer Care", v: "+91 7030 666 321", href: PHONE },
-              { i: MessageCircle, t: "Online Consultation", v: "+91 7030 666 321", href: WHATSAPP },
+              { i: MessageCircle, t: "Online Consultation", v: "+91 7030 666 321", href: WA.patientCare },
               { i: Mail, t: "Email", v: "care@healthokhospitals.com\n\n", href: "mailto:care@healthokhospitals.com" },
               { i: Clock, t: "Office Hours", v: "Mon–Sat, 9:00 AM – 6:00 PM IST" },
             ].map(({ i: Icon, t, v, href }) => {
@@ -660,7 +674,7 @@ function Contact() {
                 <div key={t} className="flex items-center gap-4 rounded-2xl bg-card p-4 border border-border shadow-soft">{Inner}</div>
               );
             })}
-            <a href={WHATSAPP} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-2 rounded-full bg-success text-white px-5 py-3 font-semibold shadow-card">
+            <a href={WA.generic} target="_blank" rel="noreferrer" className="mt-2 inline-flex items-center gap-2 rounded-full bg-success text-white px-5 py-3 font-semibold shadow-card">
               <MessageCircle className="w-4 h-4" /> Chat Instantly on WhatsApp
             </a>
           </div>
@@ -742,7 +756,7 @@ function Footer() {
           <p className="mt-4 text-sm text-white/70 max-w-md">
             Maharashtra's fastest-growing healthcare network — making trusted, transparent care accessible to every community.
           </p>
-          <a href={WHATSAPP} target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 rounded-full bg-success px-5 py-2.5 text-sm font-semibold">
+          <a href={WA.generic} target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 rounded-full bg-success px-5 py-2.5 text-sm font-semibold">
             <MessageCircle className="w-4 h-4" /> WhatsApp Care Channel
           </a>
         </div>
@@ -751,7 +765,7 @@ function Footer() {
           <ul className="mt-4 space-y-2 text-sm text-white/75">
             <li><a href="#about" className="hover:text-secondary">About Us</a></li>
             <li><a href="#doctors" className="hover:text-secondary">Our Doctors</a></li>
-            <li><a href={WHATSAPP} className="hover:text-secondary">Join as Doctor</a></li>
+            <li><a href={WA.doctorNetwork} className="hover:text-secondary">Join as Doctor</a></li>
             <li><a href="#contact" className="hover:text-secondary">Contact</a></li>
             <li><a href="/admin" className="hover:text-secondary">Admin Dashboard</a></li>
           </ul>
@@ -776,7 +790,7 @@ function Footer() {
 /* ---------------- Floating WhatsApp ---------------- */
 function FloatingWhatsApp() {
   return (
-    <a href={WHATSAPP} target="_blank" rel="noreferrer"
+    <a href={WA.generic} target="_blank" rel="noreferrer"
       className="fixed bottom-5 right-5 z-50 w-14 h-14 rounded-full bg-success text-white shadow-card flex items-center justify-center hover:scale-105 transition"
       aria-label="WhatsApp">
       <MessageCircle className="w-6 h-6" />
