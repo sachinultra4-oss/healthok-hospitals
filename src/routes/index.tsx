@@ -494,7 +494,7 @@ function FeaturedDoctors() {
                 {d.qualification && <p className="text-xs text-primary font-semibold truncate">{d.qualification}</p>}
                 <p className="mt-0.5 text-xs text-muted-foreground flex items-center gap-1"><MapPin className="w-3 h-3" /> {d.city}, {d.district}</p>
               </div>
-              <a href={waForDoctor(d.name, d.address)} target="_blank" rel="noreferrer" aria-label={`Book ${d.name}`} className="shrink-0 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
+              <a href={waForDoctor(d.name, d.address, d.city)} target="_blank" rel="noreferrer" aria-label={`Book ${d.name}`} className="shrink-0 w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center">
                 <MessageCircle className="w-4 h-4" />
               </a>
             </div>
