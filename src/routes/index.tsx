@@ -299,10 +299,11 @@ function PatientTrust() {
 function DoctorBenefits() {
   const items = [
     "Regular Training & Workshops",
-    "24/7 Consultant Backup",
+    "24*7 Consultant Backup",
     "Practice Enhancement Support",
     "Clinical Upgradation",
     "Online & Offline Ecosystem",
+    "Experience the Journey from GP to Consultant Level Practice with Health OK Hospitals — 100% Success Rate of Journey From GP to Consultant Level Practice",
     "Brand Trust & Visibility",
     "Dedicated Support Team",
   ];
@@ -312,8 +313,8 @@ function DoctorBenefits() {
         <div>
           <p className="text-sm font-semibold text-primary uppercase tracking-wider">For Doctors</p>
           <h2 className="mt-2 text-3xl md:text-4xl font-extrabold">Why 100 + Doctors Have Joined Health OK</h2>
-          <p className="mt-4 text-muted-foreground">Build a stronger practice with mentorship, specialist backup, and trusted brand visibility — all at zero cost to you.</p>
-          <a href={WHATSAPP} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-5 py-3 font-semibold shadow-card">
+          <p className="mt-4 text-muted-foreground">Build a stronger practice with mentorship, specialist backup, and trusted brand visibility.</p>
+          <a href={WA.doctorNetwork} target="_blank" rel="noreferrer" className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-5 py-3 font-semibold shadow-card">
             <Stethoscope className="w-4 h-4" /> Join Our Doctor Network
           </a>
         </div>
