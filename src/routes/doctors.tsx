@@ -13,24 +13,15 @@ import {
 import { getAllDoctors, type Doctor } from "@/data/centers";
 import logo from "@/assets/logo.png.asset.json";
 import { DoctorAvatar } from "@/components/DoctorAvatar";
+import { openDualWhatsApp, openCareWhatsApp } from "@/lib/whatsapp";
 
 const CARE = "7030666321";
-const WHATSAPP = `https://wa.me/91${CARE}`;
-const WA_CALLBACK = `${WHATSAPP}?text=${encodeURIComponent(
-  "Hello Health OK Hospitals! I would like to book a callback. Please contact me at your earliest convenience.",
-)}`;
-
-// DUAL_NOTIFY: also send to individual doctor number — implement when backend is ready.
-function waForDoctor(city: string) {
-  const body = `Health OK Appointment Request\nName: [patient will fill]\nPreferred Centre: ${city}\nMessage: I'd like to book an appointment. Please share available slots.`;
-  return `${WHATSAPP}?text=${encodeURIComponent(body)}`;
-}
 
 // District → sub-cities hierarchy
 const DISTRICT_TREE: Record<string, string[]> = {
-  Dhule: ["Sakri", "Dondaicha", "Shirpur", "Shahada"],
+  Dhule: ["Dhule", "Shirpur", "Nardana", "Shahada", "Dondaicha", "Sakri"],
+  Jalgaon: ["Jalgaon", "Amalner", "Parola", "Chalisgaon", "Pachora", "Bhadgaon"],
   Nashik: ["Nashik", "Malegaon", "Nampur"],
-  Jalgaon: ["Jalgaon", "Parola", "Chalisgaon", "Amalner", "Pachora", "Bhadgaon"],
   Thane: ["Thane"],
 };
 const DISTRICTS = Object.keys(DISTRICT_TREE);
@@ -97,14 +88,17 @@ function DoctorsPage() {
               Centres & Doctors
             </Link>
           </nav>
-          <a
-            href={WA_CALLBACK}
-            target="_blank"
-            rel="noreferrer"
+          <button
+            type="button"
+            onClick={() =>
+              openCareWhatsApp(
+                "Hello Health OK Hospitals! I would like to book a callback. Please contact me at your earliest convenience.",
+              )
+            }
             className="inline-flex items-center gap-1.5 rounded-full bg-primary text-primary-foreground px-4 py-2 text-sm font-semibold hover:opacity-90"
           >
             <MessageCircle className="w-4 h-4" /> Book Callback
-          </a>
+          </button>
         </div>
       </header>
 
@@ -278,14 +272,20 @@ function DoctorCard({ doc }: { doc: Doctor }) {
         {doc.city} • {doc.district}
       </div>
       <div className="mt-4 pt-4 border-t border-border flex gap-2">
-        <a
-          href={waForDoctor(doc.city)}
-          target="_blank"
-          rel="noreferrer"
+        {/* TODO: dual-send backend — currently opens care first, then doctor's number */}
+        <button
+          type="button"
+          onClick={() =>
+            openDualWhatsApp({
+              doctorPhone: doc.mobile,
+              doctorName: doc.name,
+              doctorCity: doc.city,
+            })
+          }
           className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-lg bg-primary text-primary-foreground px-3 py-2 text-sm font-semibold hover:opacity-90"
         >
           <MessageCircle className="w-4 h-4" /> WhatsApp
-        </a>
+        </button>
         <a
           href={`tel:+91${CARE}`}
           className="inline-flex items-center justify-center rounded-lg border border-border px-3 py-2 text-sm font-semibold hover:bg-muted"
