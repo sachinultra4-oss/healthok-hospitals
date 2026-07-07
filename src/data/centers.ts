@@ -104,7 +104,7 @@ const dondaichaDoctors: Doctor[] = [
   make({ name: "Dr. Kunal Bachchav", qualification: "MS", registration: "I-60021-A", clinic: "Shree Rajaran Surgical & General Hospital", address: "Saraswati Colony, Nirmal Hospital Javal, Dondaicha", mobile: "7768082282", city: "Dondaicha", district: "Dhule" }),
   make({ name: "Dr. Anil Dhangar", qualification: "BHMS, CCMP", registration: "37686", clinic: "Shri Clinic", address: "Omshanti Mandir Javal, Hasta Speed, Indira Market, Bazarpeth, Dondaicha", mobile: "9421532630", city: "Dondaicha", district: "Dhule" }),
   make({ name: "Dr. Kunal Thorat", qualification: "BHMS, CCMP", registration: "54085", clinic: "Dattasai Clinic", address: "Indira Market, Bazarpeth, Dondaicha", mobile: "9960566282", city: "Dondaicha", district: "Dhule" }),
-  make({ name: "Dr. Shyam Thakur", qualification: "BAMS", specialization: "RBSK Medical Officer Rural Hospital", clinic: "Rural Hospital", address: "Mhasavad, Dondaicha", mobile: "9423722005", city: "Shyam Thakur".length ? "Dondaicha" : "Dondaicha", district: "Dhule" }),
+  make({ name: "Dr. Shyam Thakur", qualification: "BAMS", specialization: "RBSK Medical Officer Rural Hospital", clinic: "Rural Hospital", address: "Mhasavad, Dondaicha", mobile: "9423722005", city: "Dondaicha", district: "Dhule" }),
 ];
 
 // ============================================================
