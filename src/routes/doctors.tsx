@@ -272,14 +272,20 @@ function DoctorCard({ doc }: { doc: Doctor }) {
         {doc.city} • {doc.district}
       </div>
       <div className="mt-4 pt-4 border-t border-border flex gap-2">
-        <a
-          href={waForDoctor(doc.city)}
-          target="_blank"
-          rel="noreferrer"
+        {/* TODO: dual-send backend — currently opens care first, then doctor's number */}
+        <button
+          type="button"
+          onClick={() =>
+            openDualWhatsApp({
+              doctorPhone: doc.mobile,
+              doctorName: doc.name,
+              doctorCity: doc.city,
+            })
+          }
           className="flex-1 inline-flex items-center justify-center gap-1.5 rounded-lg bg-primary text-primary-foreground px-3 py-2 text-sm font-semibold hover:opacity-90"
         >
           <MessageCircle className="w-4 h-4" /> WhatsApp
-        </a>
+        </button>
         <a
           href={`tel:+91${CARE}`}
           className="inline-flex items-center justify-center rounded-lg border border-border px-3 py-2 text-sm font-semibold hover:bg-muted"
