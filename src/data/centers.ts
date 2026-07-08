@@ -148,8 +148,36 @@ const amalnerDoctors: Doctor[] = [
 // ============================================================
 // JALGAON — data-pending sub-cities kept empty
 // ============================================================
-const parolaDoctors: Doctor[] = [];
-const chalisgaonDoctors: Doctor[] = [];
+// ============================================================
+// JALGAON — Chalisgaon
+// ============================================================
+const chalisgaonDoctors: Doctor[] = [
+  make({ name: "Dr. Kalyani Amit Shitole", qualification: "BHMS (MUHS)", registration: "66511", clinic: "Shitole Hospital", address: "Ghat Road, Police Chowki Samor, Chalisgaon", mobile: "9284433536", city: "Chalisgaon", district: "Jalgaon" }),
+  make({ name: "Dr. Amit Shitole", qualification: "BAMS (MUHS), PGDEMS", registration: "I-57163-A", clinic: "Shitole Hospital", address: "Patna Devi, Chalisgaon", mobile: "9511890961", city: "Chalisgaon", district: "Jalgaon" }),
+  make({ name: "Dr. Pushkar Ghate", qualification: "BAMS (Mumbai)", registration: "I-33268A-1", clinic: "Ghate Clinic", address: "Captain Corner, Chalisgaon", mobile: "9890827127", city: "Chalisgaon", district: "Jalgaon" }),
+  make({ name: "Dr. Samita Pushkar Ghate", qualification: "BAMS", registration: "I-33101A-1", clinic: "Ghate Clinic", address: "Captain Corner, Chalisgaon", mobile: "9421039307", city: "Chalisgaon", district: "Jalgaon" }),
+  make({ name: "Dr. Priyadarshini Pankaj Patil", qualification: "BHMS (MUHS)", registration: "67338", clinic: "Sharda Hospital", address: "Nagarpalika Complex, Hirapur Road, Chalisgaon", mobile: "9423461117", city: "Chalisgaon", district: "Jalgaon" }),
+  make({ name: "Dr. Pankaj R. Patil", qualification: "BAMS (MUHS), DYA, CSD", registration: "I-66014-A", clinic: "Sharda Hospital", address: "Hirapur Road, Nagarpalika Complex, Chalisgaon", mobile: "9970376483", city: "Chalisgaon", district: "Jalgaon" }),
+  make({ name: "Dr. Sarang Murlidhar Patil", qualification: "BAMS (MUHS)", registration: "I-72654-A", clinic: "Nu Aniruddha Clinic", address: "Ashish Hotel Shejari, Navin Malegaon Naka, Malegaon Road, Chalisgaon", mobile: "9284099217", city: "Chalisgaon", district: "Jalgaon" }),
+  make({ name: "Dr. Nitin Chavhan", qualification: "BAMS (MUHS)", registration: "I-75461-A", clinic: "Shri Gajanan Clinic", address: "Talonde, Ta. Chalisgaon", mobile: "8788028557", city: "Chalisgaon", district: "Jalgaon" }),
+  make({ name: "Dr. Premanand Subhash Bhosale", qualification: "BHMS (MUHS)", registration: "62487", clinic: "Bhosale Clinic", address: "Pimparkhed, Ta. Chalisgaon", mobile: "9096739455", city: "Chalisgaon", district: "Jalgaon" }),
+  make({ name: "Dr. Nitin Salunke", qualification: "BAMS", registration: "I-62217-A", clinic: "Aayush Clinic", address: "Sadanand Hotel Mage, Chalisgaon", mobile: "9860300451", city: "Chalisgaon", district: "Jalgaon" }),
+  make({ name: "Dr. Ketan G. Wagh", qualification: "BAMS (MUHS) Nasik, PGD Aura Aesthetics", registration: "I-63753-A", clinic: "Dhanvantari Clinic", address: "Sai Mandir Javal, Tarwade Peth, Chalisgaon", mobile: "8379092825", city: "Chalisgaon", district: "Jalgaon" }),
+];
+
+// ============================================================
+// JALGAON — Parola
+// ============================================================
+const parolaDoctors: Doctor[] = [
+  make({ name: "Dr. Chetan Umesh Karodpati", qualification: "BAMS", registration: "I-74339-A", clinic: "Umang Hospital", address: "Navin Sandesh Krushi Kendra Samor, Kajgaon Road, Parola", mobile: "9420350501", city: "Parola", district: "Jalgaon" }),
+  make({ name: "Dr. Anant Prakash Pawar", qualification: "BAMS", registration: "I-62016-A1", clinic: "Prasad Hospital & Ayurvedic Chikitsalaya", address: "Talav Galli, Bazar Peth, Parola", mobile: "9011785337", city: "Parola", district: "Jalgaon" }),
+  make({ name: "Dr. Suresh V. Patil", qualification: "BAMS, CCH (Mum)", registration: "I-35541-A1", clinic: "Shraddha Hospital", address: "Prasutiruh, Surgical & Balarugnalaya, Kajgaon Road, Bhadgaon Naka, Parola", mobile: "9922975502", city: "Parola", district: "Jalgaon" }),
+  make({ name: "Dr. Purushottam M. Patil", qualification: "BAMS (MUHS)", registration: "I-59566-A", clinic: "Nityanand Hospital", address: "Balarugnalaya, Prasutiruh & Surgical, Parola", mobile: "9890077413", city: "Parola", district: "Jalgaon" }),
+  make({ name: "Dr. Gopal A. Shimpi", qualification: "BAMS, CCH (MUHS)", registration: "I-59452-A", clinic: "Om Clinic", address: "Balaji Park, Savitri Nagar, Parola", mobile: "9960725146", city: "Parola", district: "Jalgaon" }),
+  make({ name: "Dr. Dhananjay Khanderao Patil", qualification: "BAMS", registration: "I-61296-A-1", clinic: "Morya Hospital", address: "Mahavir Nagar, National Highway No. 6, Parola", mobile: "9422579738", city: "Parola", district: "Jalgaon" }),
+  make({ name: "Dr. Pravin Subhash Patil", qualification: "BAMS", registration: "I-58264-A", clinic: "Shri Sailimela Hospital", address: "Sw. Vasant Jibhau Nagar, Choravad Road, Parola", mobile: "9561708727", city: "Parola", district: "Jalgaon" }),
+];
+
 const pachoraDoctors: Doctor[] = [];
 const bhadgaonDoctors: Doctor[] = [];
 
