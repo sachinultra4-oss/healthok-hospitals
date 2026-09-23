@@ -462,7 +462,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
                     ["mobile", "Mobile"],
                     ["city", "City *"],
                     ["district", "District"],
-                    ["image", "Image path (e.g. /Dr Name.jpg)"],
+                    ["image", "Image path (e.g. /doctors/Dr Name.jpg)"],
                   ].map(([key, label]) => (
                     <input
                       key={key}
