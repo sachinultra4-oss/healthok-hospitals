@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Serve deployable images from root-relative `public/` URLs; large hosted videos use absolute HTTPS URLs because repository files are capped at 10 MB.

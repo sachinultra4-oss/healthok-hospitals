@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import { toast, Toaster } from "sonner";
 import { getAllDoctors, type Doctor } from "@/data/centers";
+import { DoctorAvatar } from "@/components/DoctorAvatar";
 
 export const Route = createFileRoute("/admin")({
   head: () => ({
@@ -351,18 +352,7 @@ function Dashboard({ onLogout }: { onLogout: () => void }) {
                 ) : (
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div className="flex items-center gap-4 flex-1 min-w-0">
-                      {doctor.image ? (
-                        <img
-                          src={doctor.image}
-                          alt={doctor.name}
-                          className="w-12 h-12 rounded-full object-cover border border-border shrink-0"
-                          onError={(e) => (e.currentTarget.style.display = "none")}
-                        />
-                      ) : (
-                        <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center font-semibold shrink-0">
-                          {doctor.name.replace(/^Dr\.?\s*/, "").charAt(0)}
-                        </div>
-                      )}
+                      <DoctorAvatar name={doctor.name} image={doctor.image} size={48} />
                       <div className="min-w-0">
                         <h3 className="text-base font-semibold truncate">{doctor.name}</h3>
                         <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground mt-1">

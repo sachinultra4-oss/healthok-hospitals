@@ -5,13 +5,12 @@ import {
   Users, Award, Wallet, Wifi, Calendar, Search, ArrowRight, Star,
   ChevronDown, Mail, Send, Volume2, VolumeX,
 } from "lucide-react";
-import logo from "@/assets/logo.png.asset.json";
-import banner from "@/assets/banner.jpg.asset.json";
 import doctor1 from "@/assets/doctor1.mp4.asset.json";
 import doctor2 from "@/assets/doctor2.mp4.asset.json";
 import doctor3 from "@/assets/doctor3.mp4.asset.json";
 import { getAllDoctors } from "@/data/centers";
 import { DoctorAvatar } from "@/components/DoctorAvatar";
+import { ResilientImage } from "@/components/ResilientImage";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -24,6 +23,10 @@ export const Route = createFileRoute("/")({
 });
 
 const CARE_NUMBER = "7030666321";
+const LOGO_SRC = "/logos/health-ok-logo.png";
+const BANNER_SRC = "/images/health-ok-banner.jpg";
+const HOSTED_MEDIA_ORIGIN = "https://healthok-hospitals.lovable.app";
+const hostedMediaUrl = (path: string) => `${HOSTED_MEDIA_ORIGIN}${encodeURI(path)}`;
 const WHATSAPP = `https://wa.me/91${CARE_NUMBER}`;
 const PHONE = `tel:+91${CARE_NUMBER}`;
 // REPLACE_WITH_WHATSAPP_COMMUNITY_LINK
@@ -80,10 +83,18 @@ function Header() {
   return (
     <header className="sticky top-0 z-40 bg-background/85 backdrop-blur border-b border-border">
       <div className="container-px mx-auto max-w-7xl flex items-center justify-between h-16">
-        <a href="#home" className="flex items-center gap-2">
-          <img src={logo.url} alt="Health OK Hospitals" className="h-10 w-auto rounded-md" />
-          <span className="hidden sm:block font-display font-bold text-base leading-tight">
-            Health OK <span className="block text-xs font-medium text-muted-foreground">Hospitals</span>
+        <a href="#home" className="flex min-w-0 items-center gap-2" aria-label="Health OK Hospitals home">
+          <ResilientImage
+            src={LOGO_SRC}
+            alt="Health OK Hospitals"
+            width={60}
+            height={40}
+            decoding="async"
+            className="h-10 w-[60px] shrink-0 rounded-md object-contain"
+            fallback={<span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground"><HeartPulse className="h-5 w-5" /></span>}
+          />
+          <span className="hidden whitespace-nowrap font-display text-sm font-bold leading-none min-[430px]:block sm:text-base">
+            Health OK Hospitals
           </span>
         </a>
         <nav className="hidden md:flex items-center gap-8">
@@ -167,7 +178,16 @@ function Hero() {
         </div>
         <div className="relative">
           <div className="relative rounded-3xl overflow-hidden shadow-card ring-4 ring-white/30">
-            <img src={banner.url} alt="Health OK doctor consulting a patient" className="w-full h-full object-cover aspect-[4/5] md:aspect-[4/4]" />
+            <ResilientImage
+              src={BANNER_SRC}
+              alt="Health OK doctor consulting a patient"
+              width={512}
+              height={512}
+              decoding="async"
+              fetchPriority="high"
+              className="aspect-[4/5] h-full w-full object-cover md:aspect-[4/4]"
+              fallback={<div className="flex aspect-[4/5] items-center justify-center bg-primary/15 md:aspect-square"><Stethoscope className="h-16 w-16 text-primary-foreground/70" /></div>}
+            />
           </div>
           <div className="absolute -bottom-5 -left-3 sm:left-6 bg-white rounded-2xl shadow-card px-4 py-3 flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary"><Stethoscope className="w-5 h-5" /></div>
@@ -391,9 +411,9 @@ function HowItWorks() {
 /* ---------------- Doctor videos ---------------- */
 function DoctorVideos() {
   const vids = [
-    { src: doctor1.url, name: "Dr Pushkar Ghate, Chalisgaon", sub: "MBBS · Thane" },
-    { src: doctor2.url, name: "Dr kishor kapadnis,Nampur", sub: "B.A.M.S · Malegaon" },
-    { src: doctor3.url, name: "Dr aabasaheb Jagtap", sub: "MBBS · Malegaon" },
+    { src: hostedMediaUrl(doctor1.url), name: "Dr Pushkar Ghate, Chalisgaon", sub: "MBBS · Thane" },
+    { src: hostedMediaUrl(doctor2.url), name: "Dr kishor kapadnis,Nampur", sub: "B.A.M.S · Malegaon" },
+    { src: hostedMediaUrl(doctor3.url), name: "Dr aabasaheb Jagtap", sub: "MBBS · Malegaon" },
   ];
   return (
     <section className="py-20 md:py-28">
@@ -413,28 +433,40 @@ function DoctorVideos() {
 
 function VideoCard({ src, name, sub }: { src: string; name: string; sub: string }) {
   const [muted, setMuted] = useState(true);
+  const [failed, setFailed] = useState(false);
   return (
     <div className="group relative rounded-3xl overflow-hidden bg-black aspect-[9/14] shadow-card">
-      <video
-        src={src}
-        muted={muted}
-        loop
-        autoPlay
-        playsInline
-        onClick={() => setMuted(m => !m)}
-        className="w-full h-full object-cover cursor-pointer"
-      />
+      {failed ? (
+        <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-muted px-6 text-center text-muted-foreground">
+          <VolumeX className="h-10 w-10" />
+          <p className="text-sm font-medium">Video temporarily unavailable</p>
+        </div>
+      ) : (
+        <video
+          src={src}
+          width={720}
+          height={1120}
+          muted={muted}
+          loop
+          autoPlay
+          playsInline
+          preload="metadata"
+          onError={() => setFailed(true)}
+          onClick={() => setMuted(m => !m)}
+          className="w-full h-full object-cover cursor-pointer"
+        />
+      )}
       <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/80 to-transparent text-white">
         <p className="font-bold">{name}</p>
         <p className="text-xs text-white/80">{sub}</p>
       </div>
-      <button
+      {!failed && <button
         onClick={() => setMuted(m => !m)}
         className="absolute top-3 right-3 w-10 h-10 rounded-full bg-black/50 backdrop-blur text-white flex items-center justify-center"
         aria-label={muted ? "Unmute" : "Mute"}
       >
         {muted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
-      </button>
+      </button>}
     </div>
   );
 }
@@ -747,7 +779,16 @@ function Footer() {
       <div className="container-px mx-auto max-w-7xl grid md:grid-cols-4 gap-10">
         <div className="md:col-span-2">
           <div className="flex items-center gap-3">
-            <img src={logo.url} alt="Health OK" className="h-10 w-auto rounded-md" />
+            <ResilientImage
+              src={LOGO_SRC}
+              alt="Health OK"
+              width={60}
+              height={40}
+              loading="lazy"
+              decoding="async"
+              className="h-10 w-[60px] shrink-0 rounded-md object-contain"
+              fallback={<span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary"><HeartPulse className="h-5 w-5" /></span>}
+            />
             <div>
               <p className="font-display font-extrabold text-lg leading-none">Health OK Hospitals</p>
               <p className="text-xs text-white/60 mt-1">Standard · Ethical · Efficient</p>

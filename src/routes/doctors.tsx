@@ -11,8 +11,8 @@ import {
   Users,
 } from "lucide-react";
 import { getAllDoctors, type Doctor } from "@/data/centers";
-import logo from "@/assets/logo.png.asset.json";
 import { DoctorAvatar } from "@/components/DoctorAvatar";
+import { ResilientImage } from "@/components/ResilientImage";
 import { openDualWhatsApp, openCareWhatsApp } from "@/lib/whatsapp";
 
 const CARE = "7030666321";
@@ -74,10 +74,17 @@ function DoctorsPage() {
       <header className="sticky top-0 z-40 bg-background/85 backdrop-blur border-b border-border">
         <div className="container-px mx-auto max-w-7xl flex items-center justify-between h-16 px-4">
           <Link to="/" className="flex items-center gap-2">
-            <img src={logo.url} alt="Health OK Hospitals" className="h-10 w-auto rounded-md" />
-            <span className="hidden sm:block font-display font-bold text-base leading-tight">
-              Health OK{" "}
-              <span className="block text-xs font-medium text-muted-foreground">Hospitals</span>
+            <ResilientImage
+              src="/logos/health-ok-logo.png"
+              alt="Health OK Hospitals"
+              width={60}
+              height={40}
+              decoding="async"
+              className="h-10 w-[60px] shrink-0 rounded-md object-contain"
+              fallback={<span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-primary text-sm font-bold text-primary-foreground">H+</span>}
+            />
+            <span className="hidden whitespace-nowrap font-display text-sm font-bold leading-none min-[430px]:block sm:text-base">
+              Health OK Hospitals
             </span>
           </Link>
           <nav className="hidden md:flex items-center gap-8">
