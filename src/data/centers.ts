@@ -47,7 +47,7 @@ const dhuleHeadOffice: Doctor[] = [
     city: "Dhule",
     district: "Dhule",
     tag: "Head Office · Founder",
-    image: "/__l5e/assets-v1/6dea5c28-d323-41bf-bac5-f44f81336b8c/Dr Bhupesh Patil.jpg",
+    image: "/doctors/Dr%20Bhupesh%20Patil.jpg",
   }),
   make({
     name: "Dr. Shital Patil",
