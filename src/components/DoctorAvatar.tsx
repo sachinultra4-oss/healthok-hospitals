@@ -17,9 +17,14 @@ interface Props {
 export function DoctorAvatar({ name, image, size = 64, className = "" }: Props) {
   const [failed, setFailed] = useState(false);
 
-  const safeSrc = image
-    ? (image.startsWith("http") ? image : encodeURI(image))
-    : "";
+  let safeSrc = image ?? "";
+  if (safeSrc && !safeSrc.startsWith("http")) {
+    try {
+      safeSrc = encodeURI(decodeURI(safeSrc));
+    } catch {
+      safeSrc = encodeURI(safeSrc);
+    }
+  }
 
   const initial = name.replace(/^Dr\.?\s*/i, "").trim().charAt(0).toUpperCase() || "D";
 
