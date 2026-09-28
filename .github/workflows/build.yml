@@ -1,0 +1,42 @@
+name: Build and Package Site
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
+      - name: Locate output and add .htaccess
+        run: |
+          if [ -d ".output/public" ]; then OUT=".output/public"
+          elif [ -d "dist" ]; then OUT="dist"
+          elif [ -d "build" ]; then OUT="build"
+          else echo "No output folder found"; exit 1
+          fi
+          cat > "$OUT/.htaccess" << 'EOF'
+          <IfModule mod_rewrite.c>
+            RewriteEngine On
+            RewriteBase /
+            RewriteRule ^index\.html$ - [L]
+            RewriteCond %{REQUEST_FILENAME} !-f
+            RewriteCond %{REQUEST_FILENAME} !-d
+            RewriteRule . /index.html [L]
+          </IfModule>
+          EOF
+          mkdir -p final
+          cp -r "$OUT"/. final/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: final-site
+          path: final
