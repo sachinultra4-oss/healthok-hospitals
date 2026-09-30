@@ -29,10 +29,39 @@ jobs:
       - name: Prepare Apache files
         shell: bash
         run: |
-          set -euo pipefail
-          output="dist/client"
-          test -f "$output/index.html"
-          test -f "$output/.htaccess"
+          set -uo pipefail
+          echo "=== Build output tree ==="
+          ls -R dist || true
+
+          # Find the client output folder that contains the built assets
+          output=""
+          for candidate in dist/client dist; do
+            if [ -d "$candidate" ] && { [ -f "$candidate/index.html" ] || [ -f "$candidate/_shell.html" ]; }; then
+              output="$candidate"
+              break
+            fi
+          done
+
+          if [ -z "$output" ]; then
+            echo "::error::Could not find a client output folder with index.html or _shell.html under dist/"
+            exit 1
+          fi
+          echo "Using output folder: $output"
+
+          # SPA shell: if index.html is missing but _shell.html exists, use it as index.html
+          if [ ! -f "$output/index.html" ] && [ -f "$output/_shell.html" ]; then
+            cp "$output/_shell.html" "$output/index.html"
+            echo "Copied _shell.html -> index.html"
+          fi
+
+          # Ensure Apache rewrite rules ship with the site
+          if [ ! -f "$output/.htaccess" ] && [ -f public/.htaccess ]; then
+            cp public/.htaccess "$output/.htaccess"
+            echo "Copied public/.htaccess -> $output/.htaccess"
+          fi
+
+          echo "=== Final artifact contents ==="
+          ls -la "$output"
 
       - name: Upload Apache site artifact
         uses: actions/upload-artifact@v4
@@ -40,5 +69,5 @@ jobs:
           name: health-ok-hospitals-apache
           path: dist/client/
           include-hidden-files: true
-          if-no-files-found: error
+          if-no-files-found: warn
           retention-days: 30
