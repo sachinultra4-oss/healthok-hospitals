@@ -12,5 +12,5 @@
 - [x] Remove server/SSR-only requirements
 - [x] Add Apache HTTPS and SPA fallback rules
 - [x] Add GitHub Actions artifact build
-- [ ] Verify the generated SPA shell and all media on desktop and mobile
+- [x] Verify the generated SPA shell and all media on desktop and mobile
 - [ ] Verify routes and media in the static output
