@@ -5,9 +5,6 @@ import {
   Users, Award, Wallet, Wifi, Calendar, Search, ArrowRight, Star,
   ChevronDown, Mail, Send, Volume2, VolumeX,
 } from "lucide-react";
-import doctor1 from "@/assets/doctor1.mp4.asset.json";
-import doctor2 from "@/assets/doctor2.mp4.asset.json";
-import doctor3 from "@/assets/doctor3.mp4.asset.json";
 import { getAllDoctors } from "@/data/centers";
 import { DoctorAvatar } from "@/components/DoctorAvatar";
 import { ResilientImage } from "@/components/ResilientImage";
@@ -25,8 +22,6 @@ export const Route = createFileRoute("/")({
 const CARE_NUMBER = "7030666321";
 const LOGO_SRC = "/logos/health-ok-logo.png";
 const BANNER_SRC = "/images/health-ok-banner.jpg";
-const HOSTED_MEDIA_ORIGIN = "https://healthok-hospitals.lovable.app";
-const hostedMediaUrl = (path: string) => `${HOSTED_MEDIA_ORIGIN}${encodeURI(path)}`;
 const WHATSAPP = `https://wa.me/91${CARE_NUMBER}`;
 const PHONE = `tel:+91${CARE_NUMBER}`;
 // REPLACE_WITH_WHATSAPP_COMMUNITY_LINK
@@ -411,9 +406,9 @@ function HowItWorks() {
 /* ---------------- Doctor videos ---------------- */
 function DoctorVideos() {
   const vids = [
-    { src: hostedMediaUrl(doctor1.url), name: "Dr Pushkar Ghate, Chalisgaon", sub: "MBBS · Thane" },
-    { src: hostedMediaUrl(doctor2.url), name: "Dr kishor kapadnis,Nampur", sub: "B.A.M.S · Malegaon" },
-    { src: hostedMediaUrl(doctor3.url), name: "Dr aabasaheb Jagtap", sub: "MBBS · Malegaon" },
+    { src: "/videos/doctor-review-1.webm", name: "Dr Pushkar Ghate, Chalisgaon", sub: "MBBS · Thane" },
+    { src: "/videos/doctor-review-2.webm", name: "Dr kishor kapadnis,Nampur", sub: "B.A.M.S · Malegaon" },
+    { src: "/videos/doctor-review-3.webm", name: "Dr aabasaheb Jagtap", sub: "MBBS · Malegaon" },
   ];
   return (
     <section className="py-20 md:py-28">
