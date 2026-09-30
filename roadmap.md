@@ -5,3 +5,11 @@
 - [x] Replace all hosted pointer references with public paths
 - [x] Add image and video failure placeholders
 - [ ] Verify all pages on desktop and mobile
+
+# Apache static SPA build
+
+- [ ] Enable TanStack Start SPA/static client output
+- [ ] Remove server/SSR-only requirements
+- [ ] Add Apache HTTPS and SPA fallback rules
+- [ ] Add GitHub Actions artifact build
+- [ ] Verify routes and media in the static output
