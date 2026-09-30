@@ -9,5 +9,5 @@
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
 
-- Serve deployable images from root-relative `public/` URLs; large hosted videos use absolute HTTPS URLs because repository files are capped at 10 MB.
+- Serve deployable media from root-relative `public/` URLs and keep each repository file below 10 MB.
 - Build as a TanStack Start SPA shell at `dist/client/index.html`; Apache handles deep links through `public/.htaccess`.
